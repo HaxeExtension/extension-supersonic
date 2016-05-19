@@ -5,7 +5,7 @@
 		<haxelib name="extension-android-support-v4" />
 		<haxelib name="extension-googleplayservices-lib" />
 		<dependency name="supersonic" path="dependencies/supersonic" if="android" />
-		<android extension="org.haxe.extension.Supersonic" />
+		<android extension="org.haxe.extension.supersonic.SupersonicExtension" />
 	</section>
 
 </project>

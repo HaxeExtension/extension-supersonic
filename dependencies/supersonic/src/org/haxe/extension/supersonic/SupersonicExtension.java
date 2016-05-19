@@ -20,8 +20,9 @@
  * THE SOFTWARE.
  */
 
-package org.haxe.extension.ads.Supersonic;
+package org.haxe.extension.supersonic;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -32,7 +33,7 @@ import org.haxe.lime.HaxeObject;
 import com.supersonic.mediationsdk.sdk.Supersonic;
 import com.supersonic.mediationsdk.sdk.SupersonicFactory;
 
-public class Supersonic extends Extension {
+public class SupersonicExtension extends Extension {
 
 	protected static HaxeObject _callback = null;
 	private Supersonic mMediationAgent;
@@ -67,13 +68,11 @@ public class Supersonic extends Extension {
 	}
   
 	public static boolean showInterstitial() {
-		if(_interstitial == null) return false;
 		Extension.mainActivity.runOnUiThread(new Runnable()
 		{
 			public void run()
 			{
-				if(_interstitial != null)
-					_interstitial.showAd();
+				
 			}
 		});
 		return true;
@@ -96,14 +95,13 @@ public class Supersonic extends Extension {
 	}
  
 	@Override
-	public void onCreate() {
-		super.onCreate();
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		mMediationAgent = SupersonicFactory.getInstance();
 	}
 
 	@Override
 	public void onDestroy() {
-		if(_adView != null) _adView.destroy();
 		super.onDestroy();
 	}
 }

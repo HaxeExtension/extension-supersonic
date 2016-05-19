@@ -29,7 +29,7 @@ import openfl.utils.JNI;
 
 class Supersonic extends EventDispatcher{
 	
-	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.ads.Supersonic";
+	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.Supersonic";
 
 	public function init(appID:String) {
 		
