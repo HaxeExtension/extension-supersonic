@@ -29,10 +29,20 @@ import openfl.utils.JNI;
 
 class Supersonic extends EventDispatcher{
 	
-	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.Supersonic";
+	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
+	private static var instance:Supersonic = null;
 
-	public function init(appID:String) {
-		
+	public static function init(appKey:String) {
+		#if android
+			if(instance!=null) return;
+			try{
+				instance = new Supersonic();
+				var _init:String->Supersonic->Void = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
+				_init(appKey, instance);				
+			}catch(e:Dynamic){
+				trace("Android INIT Exception: "+e);
+			}
+		#end
 	}
 
 }
