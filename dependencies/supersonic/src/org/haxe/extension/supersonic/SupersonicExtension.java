@@ -125,9 +125,27 @@ public class SupersonicExtension extends Extension {
 		mMediationAgent.setRewardedVideoListener(mRewardedVideoListener);
 		//Init Rewarded Video
 		mMediationAgent.initRewardedVideo(mainActivity, appKey, getGAID());
-		//
-		mMediationAgent.shouldTrackNetworkState(true);
+		try{
+			mMediationAgent.shouldTrackNetworkState(true);
+		}catch(Exception e){
+			Log.i(TAG,"Could not enable TrackNetworkState. Not to worry :/");
+		}
 	}
+
+	public static boolean isRewardedVideoAvailable() {
+		return mMediationAgent.isRewardedVideoAvailable();
+	}
+
+	public static void showRewardedVideo(String placementName){
+		mMediationAgent.showRewardedVideo(placementName);	
+	}
+
+	public static String getRewardedVideoPlacementInfo(String placementName){
+		Placement placement = mMediationAgent.getRewardedVideoPlacementInfo(placementName);
+		if(placement == null) return null;
+		return "{\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
+	}
+
 
 	public static void showAd(final int size, final int halign, final int valign){
 		

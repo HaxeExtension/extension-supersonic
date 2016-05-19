@@ -1,0 +1,9 @@
+Android:
+* Send events back to Haxe
+* Interstitials
+* Banners?
+* Test mediation
+
+
+iOS:
+* Everything

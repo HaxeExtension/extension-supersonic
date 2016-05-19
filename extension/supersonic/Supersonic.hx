@@ -32,17 +32,30 @@ class Supersonic extends EventDispatcher{
 	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
 	private static var instance:Supersonic = null;
 
+	public static var isRewardedVideoAvailable(default,null):Void->Bool = function() return false;
+	public static var showRewardedVideo(default,null):String->Void = function(placementName:String) return;
+	private static var _getRewardedVideoPlacementInfo(default,null):String->String = function(placementName:String) return null;
+
 	public static function init(appKey:String) {
 		#if android
 			if(instance!=null) return;
 			try{
 				instance = new Supersonic();
 				var _init:String->Supersonic->Void = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
-				_init(appKey, instance);				
+				isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
+				showRewardedVideo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
+				_getRewardedVideoPlacementInfo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
+				_init(appKey, instance);
 			}catch(e:Dynamic){
 				trace("Android INIT Exception: "+e);
 			}
 		#end
+	}
+
+	public static function getRewardedVideoPlacementInfo(placementName:String):PlacementInfo {
+		var pi = _getRewardedVideoPlacementInfo(placementName);
+		if(pi==null) return null;
+		return new PlacementInfo(placementName,pi);
 	}
 
 }
