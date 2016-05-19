@@ -1,0 +1,14 @@
+{
+	"name": "extension-supersonic",
+	"url": "https://github.com/SempaiGames/extension-supersonic",
+	"license": "MIT",
+	"tags": ["openfl", "supersonic", "ads"],
+	"description": "Aupersonic extension for OpenFL",
+	"version": "0.0.1",
+	"dependencies": {
+		"extension-android-support-v4": "",
+		"extension-googleplayservices-lib": ""
+	},	
+	"releasenote": "First release.",
+	"contributors": ["fbricker"]
+}

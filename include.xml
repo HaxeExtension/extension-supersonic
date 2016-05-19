@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<section if="android">
+		<haxelib name="extension-android-support-v4" />
+		<haxelib name="extension-googleplayservices-lib" />
+		<dependency name="supersonic" path="dependencies/supersonic" if="android" />
+		<android extension="org.haxe.extension.Supersonic" />
+	</section>
+
+</project>
