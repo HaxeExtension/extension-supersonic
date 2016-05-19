@@ -50,79 +50,10 @@ public class SupersonicExtension extends Extension {
 		Log.i(TAG,"init called!");
 		_callback = callback;
 
-		RewardedVideoListener mRewardedVideoListener = new RewardedVideoListener() {
-			
-			//Invoked when initialization of RewardedVideo has finished successfully.
-			@Override
-			public void onRewardedVideoInitSuccess() {
-			}
-
-			//Invoked when RewardedVideo initialization process has failed. 
-			//SupersonicError contains the reason for the failure. 
-			@Override
-			public void onRewardedVideoInitFail(SupersonicError se) {
-				//Retrieve details from a SupersonicError object.
-				int errorCode =  se.getErrorCode();
-				String errorMessage = se.getErrorMessage();
-				if (errorCode == SupersonicError.ERROR_CODE_GENERIC){
-					//Write a Handler for specific error's.
-				}
-			}
-
-			//Invoked when RewardedVideo call to show a rewarded video has failed
-			//SupersonicError contains the reason for the failure. 
-			@Override
-			public void onRewardedVideoShowFail(SupersonicError se) {
-			}
-
-			//Invoked when the RewardedVideo ad view has opened.
-			//Your Activity will lose focus. Please avoid performing heavy 
-			//tasks till the video ad will be closed.
-			@Override
-			public void onRewardedVideoAdOpened() {
-			}  
-			
-			//Invoked when the RewardedVideo ad view is about to be closed.
-			//Your activity will now regain its focus.
-			@Override
-			public void onRewardedVideoAdClosed() {
-			}
-			
-			//Invoked when there is a change in the ad availability status.
-			//@param - available - value will change to true when rewarded videos are available. 
-			//You can then show the video by calling showRewardedVideo().
-			//Value will change to false when no videos are available.
-			@Override
-			public void onVideoAvailabilityChanged(boolean available) {
-				//Change the in-app 'Traffic Driver' state according to availability.
-			}
-			
-			//Invoked when the video ad starts playing.
-			@Override
-			public void onVideoStart() {
-			}
-
-			//Invoked when the video ad finishes playing.
-			@Override
-			public void onVideoEnd() {
-			}
-
-			//Invoked when the user completed the video and should be rewarded. 
-			//If using server-to-server callbacks you may ignore this events and wait for 
-			//the callback from the Supersonic server.
-			//@param - placement - the Placement the user completed a video from.
-			@Override
-			public void onRewardedVideoAdRewarded(Placement placement) {
-				//TODO - here you can reward the user according to the given amount.
-				String rewardName = placement.getRewardName();
-				int rewardAmount = placement.getRewardAmount();
-			}
-		};
-
 		//Get the mediation publisher instance 
 		mMediationAgent = SupersonicFactory.getInstance();
 		//Set the Rewarded Video Listener
-		mMediationAgent.setRewardedVideoListener(mRewardedVideoListener);
+		mMediationAgent.setRewardedVideoListener(new MyRewardedVideoListener());
 		//Init Rewarded Video
 		mMediationAgent.initRewardedVideo(mainActivity, appKey, getGAID());
 		try{
