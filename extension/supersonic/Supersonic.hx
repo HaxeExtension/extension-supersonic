@@ -32,9 +32,15 @@ class Supersonic extends EventDispatcher{
 	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
 	private static var instance:Supersonic = null;
 
+	// Rewarded video
 	public static var isRewardedVideoAvailable(default,null):Void->Bool = function() return false;
 	public static var showRewardedVideo(default,null):String->Void = function(placementName:String) return;
 	private static var _getRewardedVideoPlacementInfo(default,null):String->String = function(placementName:String) return null;
+
+	// Interstitial
+	public static var cacheInterstitial(default,null):Void->Void = function() return;
+	public static var isInterstitialReady(default,null):Void->Bool = function() return false;
+	public static var showInterstitial(default,null):String->Void = function(placementName:String) return;
 
 	public static function init(appKey:String) {
 		#if android
@@ -42,9 +48,15 @@ class Supersonic extends EventDispatcher{
 			try{
 				instance = new Supersonic();
 				var _init:String->Supersonic->Void = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
+
 				isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
 				showRewardedVideo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
 				_getRewardedVideoPlacementInfo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
+
+				cacheInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "cacheInterstitial", "()V");
+				isInterstitialReady = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isInterstitialReady", "()Z");
+				showInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showInterstitial", "(Ljava/lang/String;)V");
+
 				_init(appKey, instance);
 			}catch(e:Dynamic){
 				trace("Android INIT Exception: "+e);

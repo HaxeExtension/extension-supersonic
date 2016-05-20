@@ -52,10 +52,17 @@ public class SupersonicExtension extends Extension {
 
 		//Get the mediation publisher instance 
 		mMediationAgent = SupersonicFactory.getInstance();
+
 		//Set the Rewarded Video Listener
 		mMediationAgent.setRewardedVideoListener(new MyRewardedVideoListener());
 		//Init Rewarded Video
 		mMediationAgent.initRewardedVideo(mainActivity, appKey, getGAID());
+
+		//Set the Interstitial Listener
+		mMediationAgent.setInterstitialListener(new MyInterstitialListener());
+		//Init Interstitial
+		mMediationAgent.initInterstitial(mainActivity, appKey, getGAID());
+
 		try{
 			mMediationAgent.shouldTrackNetworkState(true);
 		}catch(Exception e){
@@ -77,7 +84,7 @@ public class SupersonicExtension extends Extension {
 		return "{\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
 	}
 
-
+/*
 	public static void showAd(final int size, final int halign, final int valign){
 		
 	}
@@ -91,26 +98,18 @@ public class SupersonicExtension extends Extension {
 			}
 		});
 	}
-	
+	*/
+
 	public static void cacheInterstitial() {
-		Extension.mainActivity.runOnUiThread(new Runnable()
-		{
-			public void run()
-			{
-				
-			}
-		});
+		mMediationAgent.loadInterstitial();
+	}
+
+	public static boolean isInterstitialReady() {
+		return mMediationAgent.isInterstitialReady();
 	}
   
-	public static boolean showInterstitial() {
-		Extension.mainActivity.runOnUiThread(new Runnable()
-		{
-			public void run()
-			{
-				
-			}
-		});
-		return true;
+	public static void showInterstitial(String placementName) {
+		mMediationAgent.showInterstitial(placementName);
 	}
 
 	@Override
