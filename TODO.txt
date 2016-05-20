@@ -1,9 +1,12 @@
 Android:
 * Send events back to Haxe
-* Interstitials
-* Banners?
 * Test mediation
 
 
 iOS:
 * Everything
+
+
+
+GENERIC:
+* Enable SDK's according to project.xml configuration (<define name="supersonic-adcolony" />)

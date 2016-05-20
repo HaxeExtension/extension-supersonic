@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.haxe.extension.supersonic"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+	<application android:hardwareAccelerated="true">
+		<activity
+		android:name="com.nativex.monetization.activities.InterstitialActivity"
+		android:configChanges="orientation|screenSize"
+		android:hardwareAccelerated="true"
+		android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+		<activity
+		android:name="com.nativex.videoplayer.VideoActivity"
+		android:configChanges="orientation|screenSize" />
+	</application>
+	
+</manifest>

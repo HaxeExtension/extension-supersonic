@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.haxe.extension.supersonic"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+	<application android:hardwareAccelerated="true">
+		<activity
+            android:name="com.supersonic.adapters.hyprmx.MediationHMXActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard|smallestScreenSize|uiMode|fontScale|screenLayout|locale">
+        </activity>
+        <activity
+            android:name="com.hyprmx.android.sdk.activity.HyprMXOfferViewerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="HyprMX SDK"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.hyprmx.android.sdk.activity.HyprMXRequiredInformationActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name="com.hyprmx.android.sdk.activity.HyprMXNoOffersActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.hyprmx.android.sdk.activity.HyprMXWebTrafficActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.hyprmx.android.sdk.activity.HyprMXVideoPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+	</application>
+	
+</manifest>

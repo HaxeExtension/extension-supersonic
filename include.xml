@@ -2,10 +2,39 @@
 <project>
 
 	<section if="android">
-		<haxelib name="extension-android-support-v4" />
 		<haxelib name="extension-googleplayservices-lib" />
+
+		<dependency name="adcolony-supersonic"		path="dependencies/adcolony-supersonic"		if="adcolony-supersonic" />
+		<dependency name="admob-supersonic"			path="dependencies/admob-supersonic"		if="admob-supersonic" />
+		<dependency name="applovin-supersonic"		path="dependencies/applovin-supersonic"		if="applovin-supersonic" />
+		<dependency name="chartboost-supersonic"	path="dependencies/chartboost-supersonic"	if="chartboost-supersonic" />
+		<dependency name="facebook-supersonic"		path="dependencies/facebook-supersonic"		if="facebook-supersonic" />
+		<dependency name="flurry-supersonic"		path="dependencies/flurry-supersonic"		if="flurry-supersonic" />
+		<dependency name="hyprmx-supersonic"		path="dependencies/hyprmx-supersonic"		if="hyprmx-supersonic" />
+		<dependency name="inmobi-supersonic"		path="dependencies/inmobi-supersonic"		if="inmobi-supersonic" />
+		<dependency name="mediabrix-supersonic"		path="dependencies/mediabrix-supersonic"	if="mediabrix-supersonic" />
+		<dependency name="nativex-supersonic"		path="dependencies/nativex-supersonic"		if="nativex-supersonic" />
+		<dependency name="tapjoy-supersonic"		path="dependencies/tapjoy-supersonic"		if="tapjoy-supersonic" />
+		<dependency name="unityads-supersonic"		path="dependencies/unityads-supersonic"		if="unityads-supersonic" />
+		<dependency name="vungle-supersonic"		path="dependencies/vungle-supersonic"		if="vungle-supersonic" />
+
+		<echo value="supersonic-extension: Adding adcolony"		if="adcolony-supersonic" />
+		<echo value="supersonic-extension: Adding admob"		if="admob-supersonic" />
+		<echo value="supersonic-extension: Adding applovin"		if="applovin-supersonic" />
+		<echo value="supersonic-extension: Adding chartboost"	if="chartboost-supersonic" />
+		<echo value="supersonic-extension: Adding facebook"		if="facebook-supersonic" />
+		<echo value="supersonic-extension: Adding flurry"		if="flurry-supersonic" />
+		<echo value="supersonic-extension: Adding hyprmx"		if="hyprmx-supersonic" />
+		<echo value="supersonic-extension: Adding inmobi"		if="inmobi-supersonic" />
+		<echo value="supersonic-extension: Adding mediabrix"	if="mediabrix-supersonic" />
+		<echo value="supersonic-extension: Adding nativex"		if="nativex-supersonic" />
+		<echo value="supersonic-extension: Adding tapjoy"		if="tapjoy-supersonic" />
+		<echo value="supersonic-extension: Adding unityads"		if="unityads-supersonic" />
+		<echo value="supersonic-extension: Adding vungle"		if="vungle-supersonic" />
+
 		<dependency name="supersonic" path="dependencies/supersonic" if="android" />
 		<android extension="org.haxe.extension.supersonic.SupersonicExtension" />
 	</section>
 
 </project>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
