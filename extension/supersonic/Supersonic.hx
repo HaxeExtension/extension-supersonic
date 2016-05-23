@@ -32,15 +32,20 @@ class Supersonic extends EventDispatcher{
 	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
 	private static var instance:Supersonic = null;
 
-	// Rewarded video
+	//// REWARDED VIDEO
+	///////////////////////////////////////////////////////////////////////////
 	public static var isRewardedVideoAvailable(default,null):Void->Bool = function() return false;
 	public static var showRewardedVideo(default,null):String->Void = function(placementName:String) return;
 	private static var _getRewardedVideoPlacementInfo(default,null):String->String = function(placementName:String) return null;
 
-	// Interstitial
+	//// INTERSTITIAL
+	///////////////////////////////////////////////////////////////////////////
 	public static var cacheInterstitial(default,null):Void->Void = function() return;
 	public static var isInterstitialReady(default,null):Void->Bool = function() return false;
 	public static var showInterstitial(default,null):String->Void = function(placementName:String) return;
+
+	//// INITIALIZATION
+	///////////////////////////////////////////////////////////////////////////
 
 	public static function init(appKey:String) {
 		#if android
@@ -64,10 +69,20 @@ class Supersonic extends EventDispatcher{
 		#end
 	}
 
+	//// INDIRECT INVOKING FEATURES
+	///////////////////////////////////////////////////////////////////////////
+
 	public static function getRewardedVideoPlacementInfo(placementName:String):PlacementInfo {
 		var pi = _getRewardedVideoPlacementInfo(placementName);
 		if(pi==null) return null;
 		return new PlacementInfo(placementName,pi);
+	}
+
+	//// EVENTS
+	///////////////////////////////////////////////////////////////////////////
+
+	public function onEvent(type:String, data:String){
+		trace('Event: '+type+' -> Data: '+data);
 	}
 
 }

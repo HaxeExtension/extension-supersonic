@@ -43,49 +43,67 @@ public class MyInterstitialListener implements InterstitialListener {
 	/**
 	 * Invoked when Interstitial initialization process completes successfully.
 	 */
-	public void onInterstitialInitSuccess(){}
+	public void onInterstitialInitSuccess(){
+		SupersonicExtension.reportEvent("onInterstitialInitSuccess",null);
+	}
 
 	/**
 	 * Invoked when Interstitial initialization process is failed.
-	 * @param supersonicError - An Object which represents the reason of initialization failure.
+	 * @param error - An Object which represents the reason of initialization failure.
 	 */
-	public void onInterstitialInitFailed(SupersonicError supersonicError){}
+	public void onInterstitialInitFailed(SupersonicError error){
+		SupersonicExtension.reportEvent("onInterstitialInitFailed","CODE: "+error.getErrorCode()+": "+error.getErrorMessage());		
+	}
 
 	/**
 	* Invoked when Interstitial Ad is ready to be shown after load function was called.
 	*/
-	public void onInterstitialReady(){}
+	public void onInterstitialReady(){
+		SupersonicExtension.reportEvent("onInterstitialReady",null);
+	}
 
 	/**
 	* invoked when there is no Interstitial Ad available after calling load function.
 	*/
-	public void onInterstitialLoadFailed(SupersonicError supersonicError){}
+	public void onInterstitialLoadFailed(SupersonicError error){
+		SupersonicExtension.reportEvent("onInterstitialLoadFailed","CODE: "+error.getErrorCode()+": "+error.getErrorMessage());		
+	}
 
 	/*
 	 * Invoked when the ad was opened and shown successfully.
 	 */
-	public void onInterstitialShowSuccess(){}
+	public void onInterstitialShowSuccess(){
+		SupersonicExtension.reportEvent("onInterstitialInitSuccess",null);
+	}
 
 	/**
 	 * Invoked when Interstitial ad failed to show.
-	 * @param supersonicError - An object which represents the reason of showInterstitial failure.
+	 * @param error - An object which represents the reason of showInterstitial failure.
 	 */
-	public void onInterstitialShowFailed(SupersonicError supersonicError){}
+	public void onInterstitialShowFailed(SupersonicError error){
+		SupersonicExtension.reportEvent("onInterstitialShowFailed","CODE: "+error.getErrorCode()+": "+error.getErrorMessage());		
+	}
 
 	/*
 	 * Invoked when the end user clicked on the interstitial ad.
 	 */
-	public void onInterstitialClick(){}
+	public void onInterstitialClick(){
+		SupersonicExtension.reportEvent("onInterstitialClick",null);
+	}
 
 	/*
 	 * Invoked when the ad is closed and the user is about to return to the application.
 	 */
-	public void onInterstitialClose(){}
+	public void onInterstitialClose(){
+		SupersonicExtension.reportEvent("onInterstitialClose",null);
+	}
 
 	/**
 	* Invoked when the Interstitial Ad Unit is opened
 	*/
-	public void onInterstitialOpen(){}
+	public void onInterstitialOpen(){
+		SupersonicExtension.reportEvent("onInterstitialOpen",null);
+	}
 
 };
 

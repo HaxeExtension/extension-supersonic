@@ -43,24 +43,21 @@ public class MyRewardedVideoListener implements RewardedVideoListener {
 	//Invoked when initialization of RewardedVideo has finished successfully.
 	@Override
 	public void onRewardedVideoInitSuccess() {
+		SupersonicExtension.reportEvent("onRewardedVideoInitSuccess",null);
 	}
 
 	//Invoked when RewardedVideo initialization process has failed. 
-	//SupersonicError contains the reason for the failure. 
+	//error contains the reason for the failure. 
 	@Override
-	public void onRewardedVideoInitFail(SupersonicError se) {
-		//Retrieve details from a SupersonicError object.
-		int errorCode =  se.getErrorCode();
-		String errorMessage = se.getErrorMessage();
-		if (errorCode == SupersonicError.ERROR_CODE_GENERIC){
-			//Write a Handler for specific error's.
-		}
+	public void onRewardedVideoInitFail(SupersonicError error) {
+		SupersonicExtension.reportEvent("onRewardedVideoInitFail","CODE: "+error.getErrorCode()+": "+error.getErrorMessage());		
 	}
 
 	//Invoked when RewardedVideo call to show a rewarded video has failed
-	//SupersonicError contains the reason for the failure. 
+	//error contains the reason for the failure. 
 	@Override
-	public void onRewardedVideoShowFail(SupersonicError se) {
+	public void onRewardedVideoShowFail(SupersonicError error) {
+		SupersonicExtension.reportEvent("onRewardedVideoShowFail","CODE: "+error.getErrorCode()+": "+error.getErrorMessage());		
 	}
 
 	//Invoked when the RewardedVideo ad view has opened.
@@ -68,12 +65,14 @@ public class MyRewardedVideoListener implements RewardedVideoListener {
 	//tasks till the video ad will be closed.
 	@Override
 	public void onRewardedVideoAdOpened() {
-	}  
+		SupersonicExtension.reportEvent("onRewardedVideoAdOpened",null);
+	}
 	
 	//Invoked when the RewardedVideo ad view is about to be closed.
 	//Your activity will now regain its focus.
 	@Override
 	public void onRewardedVideoAdClosed() {
+		SupersonicExtension.reportEvent("onRewardedVideoAdClosed",null);
 	}
 	
 	//Invoked when there is a change in the ad availability status.
@@ -82,17 +81,20 @@ public class MyRewardedVideoListener implements RewardedVideoListener {
 	//Value will change to false when no videos are available.
 	@Override
 	public void onVideoAvailabilityChanged(boolean available) {
-		//Change the in-app 'Traffic Driver' state according to availability.
+		//Change the in-app "Traffic Driver" state according to availability.
+		SupersonicExtension.reportEvent("onVideoAvailabilityChanged",available?"true":"false");
 	}
 	
 	//Invoked when the video ad starts playing.
 	@Override
 	public void onVideoStart() {
+		SupersonicExtension.reportEvent("onVideoStart",null);
 	}
 
 	//Invoked when the video ad finishes playing.
 	@Override
 	public void onVideoEnd() {
+		SupersonicExtension.reportEvent("onVideoEnd",null);
 	}
 
 	//Invoked when the user completed the video and should be rewarded. 
@@ -101,8 +103,6 @@ public class MyRewardedVideoListener implements RewardedVideoListener {
 	//@param - placement - the Placement the user completed a video from.
 	@Override
 	public void onRewardedVideoAdRewarded(Placement placement) {
-		//TODO - here you can reward the user according to the given amount.
-		String rewardName = placement.getRewardName();
-		int rewardAmount = placement.getRewardAmount();
+		SupersonicExtension.reportEvent("onRewardedVideoAdRewarded",SupersonicExtension.placement2JSON(placement));
 	}
 };

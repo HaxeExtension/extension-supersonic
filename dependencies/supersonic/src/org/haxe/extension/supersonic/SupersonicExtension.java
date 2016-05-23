@@ -45,6 +45,9 @@ public class SupersonicExtension extends Extension {
 	private static Supersonic mMediationAgent;
 	private static final String TAG = "SupersonicExtension";
 
+	//// GENERIC
+	///////////////////////////////////////////////////////////////////////////
+
 	public static void init(String appKey, HaxeObject callback){
 		if(_callback!=null) return;
 		Log.i(TAG,"init called!");
@@ -70,6 +73,22 @@ public class SupersonicExtension extends Extension {
 		}
 	}
 
+	public static void reportEvent(String type, String data){
+		if(_callback==null) {
+			Log.w(TAG,"Can't send event "+type+" because _callback object is null!");
+			return;
+		}
+		_callback.call2("onEvent",type,data);
+	}
+
+	public static String placement2JSON(Placement placement){
+		if(placement == null) return null;
+		return "{\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
+	}
+
+	//// REWARDED VIDEO
+	///////////////////////////////////////////////////////////////////////////
+
 	public static boolean isRewardedVideoAvailable() {
 		return mMediationAgent.isRewardedVideoAvailable();
 	}
@@ -80,25 +99,11 @@ public class SupersonicExtension extends Extension {
 
 	public static String getRewardedVideoPlacementInfo(String placementName){
 		Placement placement = mMediationAgent.getRewardedVideoPlacementInfo(placementName);
-		if(placement == null) return null;
-		return "{\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
+		return placement2JSON(placement);
 	}
 
-/*
-	public static void showAd(final int size, final int halign, final int valign){
-		
-	}
-	
-	public static void hideAd() {
-		Extension.mainActivity.runOnUiThread(new Runnable()
-		{
-			public void run()
-			{
-				
-			}
-		});
-	}
-	*/
+	//// INTETRSTITIALS
+	///////////////////////////////////////////////////////////////////////////
 
 	public static void cacheInterstitial() {
 		mMediationAgent.loadInterstitial();
@@ -111,6 +116,9 @@ public class SupersonicExtension extends Extension {
 	public static void showInterstitial(String placementName) {
 		mMediationAgent.showInterstitial(placementName);
 	}
+
+	//// APP LIFECICLE
+	///////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void onResume() {
