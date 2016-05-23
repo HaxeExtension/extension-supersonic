@@ -78,12 +78,12 @@ public class SupersonicExtension extends Extension {
 			Log.w(TAG,"Can't send event "+type+" because _callback object is null!");
 			return;
 		}
-		_callback.call2("onEvent",type,data);
+		_callback.call2("_onEvent",type,data);
 	}
 
 	public static String placement2JSON(Placement placement){
 		if(placement == null) return null;
-		return "{\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
+		return "{\"placementId\":"+placement.getPlacementId()+",\"placementName\":\""+placement.getPlacementName()+"\",\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
 	}
 
 	//// REWARDED VIDEO

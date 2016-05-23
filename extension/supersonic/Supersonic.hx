@@ -28,24 +28,26 @@ import openfl.utils.JNI;
 #end
 
 class Supersonic extends EventDispatcher{
-	
-	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
-	private static var instance:Supersonic = null;
 
 	//// REWARDED VIDEO
 	///////////////////////////////////////////////////////////////////////////
+
 	public static var isRewardedVideoAvailable(default,null):Void->Bool = function() return false;
 	public static var showRewardedVideo(default,null):String->Void = function(placementName:String) return;
 	private static var _getRewardedVideoPlacementInfo(default,null):String->String = function(placementName:String) return null;
 
 	//// INTERSTITIAL
 	///////////////////////////////////////////////////////////////////////////
+
 	public static var cacheInterstitial(default,null):Void->Void = function() return;
 	public static var isInterstitialReady(default,null):Void->Bool = function() return false;
 	public static var showInterstitial(default,null):String->Void = function(placementName:String) return;
 
 	//// INITIALIZATION
 	///////////////////////////////////////////////////////////////////////////
+
+	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
+	private static var instance:Supersonic = null;
 
 	public static function init(appKey:String) {
 		#if android
@@ -75,14 +77,22 @@ class Supersonic extends EventDispatcher{
 	public static function getRewardedVideoPlacementInfo(placementName:String):PlacementInfo {
 		var pi = _getRewardedVideoPlacementInfo(placementName);
 		if(pi==null) return null;
-		return new PlacementInfo(placementName,pi);
+		return new PlacementInfo(pi);
 	}
 
 	//// EVENTS
 	///////////////////////////////////////////////////////////////////////////
 
-	public function onEvent(type:String, data:String){
-		trace('Event: '+type+' -> Data: '+data);
+	public static var onEvent:SupersonicEvent->Void = null;
+
+	public function _onEvent(type:String, data:String){
+		if(onEvent==null){
+			trace('Unchought Event: '+type+' -> Data: '+data);
+			trace('you should assign your own onEvent function by doing ');
+			trace('Supersonic.onEvent = function(e:SupersonicEvent) { ... };');
+		}else{
+			onEvent(new SupersonicEvent(type,data));
+		}
 	}
 
 }

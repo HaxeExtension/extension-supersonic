@@ -20,12 +20,26 @@ class SupersonicEvent {
 	public static inline var InterstitialInitFailed:String = 'onInterstitialInitFailed';
 	public static inline var InterstitialReady:String = 'onInterstitialReady';
 	public static inline var InterstitialLoadFailed:String = 'onInterstitialLoadFailed';
-	public static inline var InterstitialInitSuccess:String = 'onInterstitialInitSuccess';
+	public static inline var InterstitialShowSuccess:String = 'onInterstitialShowSuccess';
 	public static inline var InterstitialShowFailed:String = 'onInterstitialShowFailed';
 	public static inline var InterstitialClick:String = 'onInterstitialClick';
 	public static inline var InterstitialClose:String = 'onInterstitialClose';
 	public static inline var InterstitialOpen:String = 'onInterstitialOpen';
 
+	//// GENERIC
+	///////////////////////////////////////////////////////////////////////////
 
+	public var type(default,null):String = null;
+	public var data(default,null):String = null;
+
+	public function new(type:String, data:String){
+		this.type = type;
+		this.data = data;
+	}
+
+	public function getPlacementInfo(){
+		if(this.type != SupersonicEvent.RewardedVideoAdRewarded || data == null) return null;
+		return new PlacementInfo(data);
+	}
 
 }

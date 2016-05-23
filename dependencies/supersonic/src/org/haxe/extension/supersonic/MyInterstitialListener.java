@@ -73,7 +73,7 @@ public class MyInterstitialListener implements InterstitialListener {
 	 * Invoked when the ad was opened and shown successfully.
 	 */
 	public void onInterstitialShowSuccess(){
-		SupersonicExtension.reportEvent("onInterstitialInitSuccess",null);
+		SupersonicExtension.reportEvent("onInterstitialShowSuccess",null);
 	}
 
 	/**

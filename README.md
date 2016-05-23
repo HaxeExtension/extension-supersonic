@@ -44,12 +44,27 @@ may end-up getting the Android 64K limit error -->
 ```haxe
 // This example show a simple example.
 
-import extension.multiads.Ads;
+import extension.supersonic.Supersonic;
+import extension.supersonic.SupersonicEvent;
 
 class SimpleExample {
 
 	function new(){
+		Supersonic.onEvent = onSupersonicEvent;
 		Supersonic.init('YOUR-APP-KEY'); // should be something like: 5c33ac32
+	}
+
+	public function onSupersonicEvent(e:SupersonicEvent){
+		trace("Supersonic Event: type="+e.type+" | data="+e.data);
+		if(e.type == SupersonicEvent.RewardedVideoAdRewarded){
+			var pi = e.getPlacementInfo();
+			if(pi!=null) {
+				trace(" :: placementId: " + pi.placementId +
+					  " :: placementName: " + pi.placementName +
+					  " :: rewardName: " + pi.rewardName +
+					  " :: rewardAmount: " + pi.rewardAmount );
+			}
+		}
 	}
 
 	function gameOver() {
