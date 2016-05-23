@@ -1,12 +1,6 @@
-Android:
-* Send events back to Haxe
-* Test mediation
-
-
 iOS:
-* Everything
-
-
-
-GENERIC:
-* Enable SDK's according to project.xml configuration (<define name="supersonic-adcolony" />)
+* Build Basic Skeleton
+* Add supersonic SDK
+* Add connectors
+* Send events back to haxe
+* Test
