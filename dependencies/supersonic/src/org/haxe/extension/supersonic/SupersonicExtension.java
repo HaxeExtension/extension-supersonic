@@ -48,29 +48,33 @@ public class SupersonicExtension extends Extension {
 	//// GENERIC
 	///////////////////////////////////////////////////////////////////////////
 
-	public static void init(String appKey, HaxeObject callback){
+	public static void init(final String appKey, HaxeObject callback){
 		if(_callback!=null) return;
 		Log.i(TAG,"init called!");
 		_callback = callback;
 
 		//Get the mediation publisher instance 
 		mMediationAgent = SupersonicFactory.getInstance();
-
 		//Set the Rewarded Video Listener
 		mMediationAgent.setRewardedVideoListener(new MyRewardedVideoListener());
-		//Init Rewarded Video
-		mMediationAgent.initRewardedVideo(mainActivity, appKey, getGAID());
-
 		//Set the Interstitial Listener
-		mMediationAgent.setInterstitialListener(new MyInterstitialListener());
-		//Init Interstitial
-		mMediationAgent.initInterstitial(mainActivity, appKey, getGAID());
+		mMediationAgent.setInterstitialListener(new MyInterstitialListener());		
 
-		try{
-			mMediationAgent.shouldTrackNetworkState(true);
-		}catch(Exception e){
-			Log.i(TAG,"Could not enable TrackNetworkState. Not to worry :/");
-		}
+		mainActivity.runOnUiThread(new Runnable() {
+			public void run() { 
+				//Init Rewarded Video
+				mMediationAgent.initRewardedVideo(mainActivity, appKey, getGAID());
+
+				//Init Interstitial
+				mMediationAgent.initInterstitial(mainActivity, appKey, getGAID());
+
+				try{
+					mMediationAgent.shouldTrackNetworkState(true);
+				}catch(Exception e){
+					Log.i(TAG,"Could not enable TrackNetworkState. Not to worry :/");
+				}
+			}
+		});
 	}
 
 	public static void reportEvent(String type, String data){
