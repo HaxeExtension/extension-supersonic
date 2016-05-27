@@ -38,6 +38,26 @@ static value supersonicextension_rewardedvideo_show(value placementName){
 }
 DEFINE_PRIM(supersonicextension_rewardedvideo_show,1);
 
+static value supersonicextension_is_rewarded_video_available(){
+	return alloc_bool(isRewardedVideoAvailable());
+}
+DEFINE_PRIM(supersonicextension_is_rewarded_video_available,0);
+
+static value supersonicextension_get_rewarded_video_placement_info(value placementName){
+	return alloc_string(getRewardedVideoPlacementInfo(val_string(placementName)));
+}
+DEFINE_PRIM(supersonicextension_get_rewarded_video_placement_info,1);
+
+static value supersonicextension_cache_interstitial(){
+	cacheInterstitial();
+	return alloc_null();
+}
+DEFINE_PRIM(supersonicextension_cache_interstitial,0);
+
+static value supersonicextension_is_interstitial_ready(){
+	return alloc_bool(isInterstitialReady());
+}
+DEFINE_PRIM(supersonicextension_is_interstitial_ready,0);
 
 extern "C" int SupersonicExtension_register_prims () { return 0; }
 

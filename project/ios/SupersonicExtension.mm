@@ -53,13 +53,22 @@ namespace SupersonicExtension {
     }
 
     bool showInterstitial(const char *placementName){
-/*
-        if(interstitialListener==nil) return false;
-        if(![interstitialListener isReady]) return false;
-        [interstitialListener show];
-        interstitialListener = [[InterstitialListener alloc] initWithID:interstitialID];
-*/
         return true;
     }
 
+    void cacheInterstitial(){
+
+    }
+
+    bool isInterstitialReady(){
+        return false;
+    }
+
+    bool isRewardedVideoAvailable(){
+        return false;
+    }
+    
+    char *getRewardedVideoPlacementInfo(const char *placementName){
+        return NULL;
+    }
 }

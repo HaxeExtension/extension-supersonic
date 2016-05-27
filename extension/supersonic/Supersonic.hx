@@ -73,8 +73,12 @@ class Supersonic extends EventDispatcher{
 			try{
 				var _init:String->Dynamic->Void = cpp.Lib.load("SupersonicExtension","supersonicextension_init",2);
 
+				isRewardedVideoAvailable = cpp.Lib.load("SupersonicExtension","supersonicextension_is_rewarded_video_available",0);
 				showRewardedVideo = cpp.Lib.load("SupersonicExtension","supersonicextension_rewardedvideo_show",1);
+				_getRewardedVideoPlacementInfo = cpp.Lib.load("SupersonicExtension","supersonicextension_get_rewarded_video_placement_info",1);
 
+				cacheInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_cache_interstitial",0);
+				isInterstitialReady = cpp.Lib.load("SupersonicExtension","supersonicextension_is_interstitial_ready",0);
 				showInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_interstitial_show",1);
 
 				_init(appKey, instance._onEvent);
