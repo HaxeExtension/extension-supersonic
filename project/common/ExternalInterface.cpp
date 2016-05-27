@@ -28,11 +28,15 @@ extern "C" void supersonicextension_main () {
 DEFINE_ENTRY_POINT (supersonicextension_main);
 
 
-static value supersonicextension_interstitial_show(){
-	return alloc_bool(showInterstitial());
+static value supersonicextension_interstitial_show(value placementName){
+	return alloc_bool(showInterstitial(val_string(placementName)));
 }
-DEFINE_PRIM(supersonicextension_interstitial_show,0);
+DEFINE_PRIM(supersonicextension_interstitial_show,1);
 
+static value supersonicextension_rewardedvideo_show(value placementName){
+	return alloc_bool(showRewardedVideo(val_string(placementName)));
+}
+DEFINE_PRIM(supersonicextension_rewardedvideo_show,1);
 
 
 extern "C" int SupersonicExtension_register_prims () { return 0; }

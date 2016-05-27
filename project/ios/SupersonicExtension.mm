@@ -47,12 +47,12 @@ namespace SupersonicExtension {
         [[Supersonic sharedInstance] initRVWithAppKey:appKey withUserId:adId];
     }
     
-    bool showRewardedVideo(){
+    bool showRewardedVideo(const char *placementName){
         [[Supersonic sharedInstance] showRV];
         return true;
     }
 
-    bool showInterstitial(){
+    bool showInterstitial(const char *placementName){
 /*
         if(interstitialListener==nil) return false;
         if(![interstitialListener isReady]) return false;

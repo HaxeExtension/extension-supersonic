@@ -4,7 +4,8 @@
 namespace SupersonicExtension {
 	
 	void init(const char *__app_key);
-	bool showInterstitial();
+	bool showInterstitial(const char *placementName);
+	bool showRewardedVideo(const char *placementName);
 	
 }
 

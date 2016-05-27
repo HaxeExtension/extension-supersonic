@@ -50,10 +50,11 @@ class Supersonic extends EventDispatcher{
 	private static var instance:Supersonic = null;
 
 	public static function init(appKey:String) {
+		if(instance!=null) return;
+		instance = new Supersonic();
+
 		#if android
-			if(instance!=null) return;
 			try{
-				instance = new Supersonic();
 				var _init:String->Supersonic->Void = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
 
 				isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
@@ -67,6 +68,18 @@ class Supersonic extends EventDispatcher{
 				_init(appKey, instance);
 			}catch(e:Dynamic){
 				trace("Android INIT Exception: "+e);
+			}
+		#elseif ios
+			try{
+				var _init:String->Dynamic->Void = cpp.Lib.load("SupersonicExtension","supersonicextension_init",2);
+
+				showRewardedVideo = cpp.Lib.load("SupersonicExtension","supersonicextension_rewardedvideo_show",1);
+
+				showInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_interstitial_show",1);
+
+				_init(appKey, instance._onEvent);
+			}catch(e:Dynamic){
+				trace("iOS INIT Exception: "+e);
 			}
 		#end
 	}
