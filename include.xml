@@ -39,8 +39,8 @@
 	<section if="ios">
 		<ndll name="SupersonicExtension" />
 		<dependency path="frameworks/Supersonic.framework" />
-		<!--dependency name="AdSupport.framework" />
-		<dependency name="AudioToolbox.framework" />
+		<dependency name="AdSupport.framework" />
+		<!--dependency name="AudioToolbox.framework" />
 		<dependency name="AVFoundation.framework" />
 		<dependency name="CoreGraphics.framework" />
 		<dependency name="CoreMedia.framework" />

@@ -1,5 +1,8 @@
 #include <SupersonicExtension.h>
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
+#import <AdSupport/ASIdentifierManager.h>
+#import "Supersonic/Supersonic.h"
+#include "RVDelegate.mm"
 
 extern "C" void reportSupersonicEvent (const char* event);
 
@@ -27,25 +30,28 @@ static const char* InterstitialClick = "onInterstitialClick";
 static const char* InterstitialClose = "onInterstitialClose";
 static const char* InterstitialOpen = "onInterstitialOpen";
 
-
-
-namespace admobex {
+namespace SupersonicExtension {
 	
-//  static GADBannerView *bannerView;
-//	static InterstitialListener *interstitialListener;
-
 	UIViewController *root;
     
-	void init(const char *__app_id){
+	void init(const char *__app_key){
 		root = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-        NSString* appId = [NSString stringWithUTF8String:__app_id];
-/*        
+        NSString* appKey = [NSString stringWithUTF8String:__app_key];
+        NSString* adId = @"TEST";
+        if([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+            adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        }
 
-        // INTERSTITIAL
-        interstitialListener = [[InterstitialListener alloc] initWithID:interstitialID];
-*/        
+        [Supersonic sharedInstance];
+        [[Supersonic sharedInstance] setRVDelegate:[RVDelegate alloc]];
+        [[Supersonic sharedInstance] initRVWithAppKey:appKey withUserId:adId];
     }
     
+    bool showRewardedVideo(){
+        [[Supersonic sharedInstance] showRV];
+        return true;
+    }
+
     bool showInterstitial(){
 /*
         if(interstitialListener==nil) return false;

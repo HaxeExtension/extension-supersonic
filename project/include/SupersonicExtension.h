@@ -3,7 +3,7 @@
 
 namespace SupersonicExtension {
 	
-	void init(const char *BannerID);
+	void init(const char *__app_key);
 	bool showInterstitial();
 	
 }

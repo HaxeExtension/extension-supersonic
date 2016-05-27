@@ -35,7 +35,7 @@ DEFINE_PRIM(supersonicextension_interstitial_show,0);
 
 
 
-extern "C" int supersonicextension_register_prims () { return 0; }
+extern "C" int SupersonicExtension_register_prims () { return 0; }
 
 
 extern "C" void reportSupersonicEvent(const char* event)
