@@ -18,20 +18,6 @@
 		<dependency name="unityads-supersonic"		path="dependencies/unityads-supersonic"		if="unityads-supersonic" />
 		<dependency name="vungle-supersonic"		path="dependencies/vungle-supersonic"		if="vungle-supersonic" />
 
-		<echo value="supersonic-extension: Adding adcolony"		if="adcolony-supersonic" />
-		<echo value="supersonic-extension: Adding admob"		if="admob-supersonic" />
-		<echo value="supersonic-extension: Adding applovin"		if="applovin-supersonic" />
-		<echo value="supersonic-extension: Adding chartboost"	if="chartboost-supersonic" />
-		<echo value="supersonic-extension: Adding facebook"		if="facebook-supersonic" />
-		<echo value="supersonic-extension: Adding flurry"		if="flurry-supersonic" />
-		<echo value="supersonic-extension: Adding hyprmx"		if="hyprmx-supersonic" />
-		<echo value="supersonic-extension: Adding inmobi"		if="inmobi-supersonic" />
-		<echo value="supersonic-extension: Adding mediabrix"	if="mediabrix-supersonic" />
-		<echo value="supersonic-extension: Adding nativex"		if="nativex-supersonic" />
-		<echo value="supersonic-extension: Adding tapjoy"		if="tapjoy-supersonic" />
-		<echo value="supersonic-extension: Adding unityads"		if="unityads-supersonic" />
-		<echo value="supersonic-extension: Adding vungle"		if="vungle-supersonic" />
-
 		<dependency name="supersonic" path="dependencies/supersonic" if="android" />
 		<android extension="org.haxe.extension.supersonic.SupersonicExtension" />
 	</section>
@@ -40,17 +26,137 @@
 		<ndll name="SupersonicExtension" />
 		<dependency path="frameworks/Supersonic.framework" />
 		<dependency name="AdSupport.framework" />
-		<!--dependency name="AudioToolbox.framework" />
+		<dependency name="AudioToolbox.framework" />
+		<dependency name="Foundation.framework" />
 		<dependency name="AVFoundation.framework" />
 		<dependency name="CoreGraphics.framework" />
 		<dependency name="CoreMedia.framework" />
+		<dependency name="CoreVideo.framework" />
 		<dependency name="CoreTelephony.framework" />
 		<dependency name="EventKit.framework" />
 		<dependency name="EventKitUI.framework" />
 		<dependency name="MediaPlayer.framework" />
 		<dependency name="MessageUI.framework" />
+		<dependency name="Social.framework" />
 		<dependency name="StoreKit.framework" />
-		<dependency name="SystemConfiguration.framework" /-->
+		<dependency name="SystemConfiguration.framework" />
+		<dependency name="Webkit.framework" />
+		<dependency name="CoreMotion.framework" />
+		<dependency name="UIKit.framework" />
+		<dependency name="QuartzCore.framework" />
+		<dependency name="CFNetwork.framework" />
+		<dependency name="MobileCoreServices.framework" />
+		<dependency name="CoreLocation.framework" />
+		<dependency name="Security.framework" />
+		<dependency name="libz.tbd" />
+
+		<section if="adcolony-supersonic">
+			<dependency path="frameworks/SUAdColonyAdapter/SUAdColonyAdapter.framework" />
+			<dependency path="frameworks/SUAdColonyAdapter/AdColony/AdColony.framework" />
+			<dependency name="libz.1.2.5.tbd" />
+		</section>
+
+		<section if="admob-supersonic">
+			<dependency path="frameworks/SUAdMobAdapter/SUAdMobAdapter.framework" />
+			<dependency path="frameworks/SUAdMobAdapter/AdMob/GoogleMobileAds.framework" />
+		</section>
+
+		<section if="applovin-supersonic">
+			<!--dependency path="frameworks/SUAppLovinAdapter/SUAppLovinAdapter.framework" />
+			<dependency path="frameworks/SUAppLovinAdapter/Applovin/libAppLovinSdk.a" /-->
+		</section>
+
+		<section if="chartboost-supersonic">
+			<dependency path="frameworks/SUChartboostAdapter/SUChartboostAdapter.framework" />
+			<dependency path="frameworks/SUChartboostAdapter/Chartboost/Chartboost.framework" />
+		</section>
+
+		<section if="facebook-supersonic">
+			<dependency path="frameworks/SUFacebookAdapter/SUFacebookAdapter.framework" />
+			<dependency path="frameworks/SUFacebookAdapter/facebook/FBAudienceNetwork.framework" />
+		</section>
+
+		<section if="flurry-supersonic">
+			<!--dependency path="frameworks/SUFlurryAdapter/SUFlurryAdapter.framework" />
+			<dependency path="frameworks/SUFlurryAdapter/Flurry/......framework" /-->
+		</section>
+
+		<section if="hyprmx-supersonic" >
+			<dependency path="frameworks/SUHyprMXAdapter/SUHyprMXAdapter.framework" />
+			<dependency path="frameworks/SUHyprMXAdapter/HyprMX/HyprMX.framework" />
+			
+			<dependency name="Accelerate.framework" />
+		</section>
+
+		<section if="inmobi-supersonic" >
+			<!--dependency path="frameworks/SUInMobiAdapter/SUInMobiAdapter.framework" />
+			<dependency path="frameworks/SUInMobiAdapter/InMobi/InMobi......framework" /-->
+
+			<dependency name="SafariServices.framework" />
+			<dependency name="libsqlite3.0.tbd" />
+		</section>
+
+		<section if="mediabrix-supersonic" >
+			<!--dependency path="frameworks/SUMediaBrixAdapter/SUMediaBrixAdapter.framework" />
+			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/MBRXMoatMobileAppKit.framework" />
+			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/libMediaBrix.a" /-->
+
+			<dependency name="libsqlite3.tbd" />
+			<dependency name="AudioToolbox.framework" />
+			<dependency name="Accounts.framework" />
+		</section>
+
+
+		<section if="nativex-supersonic" >
+			<!--dependency path="frameworks/SUNativeXAdapter/SUNativeXAdapter.framework" />
+			<dependency path="frameworks/SUNativeXAdapter/NativeXiOSSDK/libNativeXSDK.a" /-->
+			<dependency name="libsqlite3.0.tbd" />
+		</section>
+
+		<section if="tapjoy-supersonic">
+			<!--dependency path="frameworks/SUTapJoyAdapter/SUTapJoyAdapter.framework" />
+			<dependency path="frameworks/SUTapJoyAdapter/TapJoy/Tapjoy.embeddedframework/Tapjoy.framework" /-->
+			<dependency name="CoreData.framework" />
+			<dependency name="libc++.tbd" />
+			<dependency name="libsqlite3.0.tbd" />
+			<dependency name="libxml2.tbd" />
+			<dependency name="MapKit.framework" />
+			<dependency name="PassKit.framework" />
+			<dependency name="Twitter.framework" />
+		</section>
+
+		<section if="unityads-supersonic">
+			<!--dependency path="frameworks/SUUnityAdsAdapter/SUUnityAdsAdapter.framework" />
+			<dependency path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.framework" />
+			<dependency path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.bundle" /-->
+		</section>
+
+		<section if="vungle-supersonic">
+			<!--dependency path="frameworks/SUVungleAdapter/SUVungleAdapter.framework" />
+			<dependency path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/VungleSDK.framework" /-->
+
+			<dependency name="libsqlite3.tbd" />
+			<dependency name="WebKit.framework" />
+		</section>
+
+		<template path="template/PROJ-Info.plist" rename="PiratePig-Info.plist" />
+
+	</section>
+
+	<section if="ios || android">
+		<echo value="supersonic-extension: Adding adcolony dependencies"	if="adcolony-supersonic" />
+		<echo value="supersonic-extension: Adding admob dependencies"		if="admob-supersonic" />
+		<echo value="supersonic-extension: Adding applovin dependencies"	if="applovin-supersonic" />
+		<echo value="supersonic-extension: Adding chartboost dependencies"	if="chartboost-supersonic" />
+		<echo value="supersonic-extension: Adding facebook dependencies"	if="facebook-supersonic" />
+		<echo value="supersonic-extension: Adding flurry dependencies"		if="flurry-supersonic" />
+		<echo value="supersonic-extension: Adding hyprmx dependencies"		if="hyprmx-supersonic" />
+		<echo value="supersonic-extension: Adding inmobi dependencies"		if="inmobi-supersonic" />
+		<echo value="supersonic-extension: Adding mediabrix dependencies"	if="mediabrix-supersonic" />
+		<echo value="supersonic-extension: Adding nativex dependencies"		if="nativex-supersonic" />
+		<echo value="supersonic-extension: Adding tapjoy dependencies"		if="tapjoy-supersonic" />
+		<echo value="supersonic-extension: Adding unityads dependencies"	if="unityads-supersonic" />
+		<echo value="supersonic-extension: Adding vungle dependencies"		if="vungle-supersonic" />
 	</section>
 
 </project>

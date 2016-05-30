@@ -108,6 +108,7 @@ class Supersonic extends EventDispatcher{
 			trace('you should assign your own onEvent function by doing ');
 			trace('Supersonic.onEvent = function(e:SupersonicEvent) { ... };');
 		}else{
+			trace('Event: '+type+' -> Data: '+data);
 			onEvent(new SupersonicEvent(type,data));
 		}
 	}

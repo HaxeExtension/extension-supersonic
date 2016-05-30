@@ -62,10 +62,10 @@ DEFINE_PRIM(supersonicextension_is_interstitial_ready,0);
 extern "C" int SupersonicExtension_register_prims () { return 0; }
 
 
-extern "C" void reportSupersonicEvent(const char* event)
+extern "C" void reportSupersonicEvent(const char* event, const char* data)
 {
 	if(eventHandle == NULL) return;
 //    value o = alloc_empty_object();
 //    alloc_field(o,val_id("event"),alloc_string(event));
-    val_call1(eventHandle->get(), alloc_string(event));
+    val_call2(eventHandle->get(), alloc_string(event), alloc_string(data));
 }

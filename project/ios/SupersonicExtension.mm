@@ -1,10 +1,12 @@
 #include <SupersonicExtension.h>
-//#import <UIKit/UIKit.h>
+extern "C" void reportSupersonicEvent (const char* event, const char *data);
+
+#import <UIKit/UIKit.h>
 #import <AdSupport/ASIdentifierManager.h>
 #import "Supersonic/Supersonic.h"
 #include "RVDelegate.mm"
+#include "ISDelegate.mm"
 
-extern "C" void reportSupersonicEvent (const char* event);
 
 //// REWARDED VIDEO
 ///////////////////////////////////////////////////////////////////////////
@@ -30,14 +32,9 @@ static const char* InterstitialClick = "onInterstitialClick";
 static const char* InterstitialClose = "onInterstitialClose";
 static const char* InterstitialOpen = "onInterstitialOpen";
 
-char *placement2JSON(SupersonicPlacementInfo * pInfo){
+NSString *placement2JSON(SupersonicPlacementInfo * pInfo){
     if(pInfo == NULL) return NULL;
-    NSString * rewardName = [pInfo rewardName];
-    NSNumber * rewardAmount = [pInfo rewardAmount];
-    //NSNumber * placementId = [pInfo placementId];
-    NSString * placementName = [pInfo placementName];
-    return NULL;
-    //return "{\"placementId\":"+placement.getPlacementId()+",\"placementName\":\""+placement.getPlacementName()+"\",\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
+    return [NSString stringWithFormat:@"{\"placementName\":\"%@\",\"rewardName\":\"%@\",\"rewardAmount\":%@}", [pInfo placementName], [pInfo rewardName], [pInfo rewardAmount]];
 }        
 
 
@@ -53,9 +50,12 @@ namespace SupersonicExtension {
             adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
         }
 
-        [Supersonic sharedInstance];
         [[Supersonic sharedInstance] setRVDelegate:[RVDelegate alloc]];
         [[Supersonic sharedInstance] initRVWithAppKey:appKey withUserId:adId];
+
+        [[Supersonic sharedInstance] setISDelegate:[ISDelegate alloc]];
+        [[Supersonic sharedInstance] initISWithAppKey:appKey withUserId:adId];
+        
         NSLog(@"SupersonicExtension init complete");
     }
     
@@ -88,11 +88,13 @@ namespace SupersonicExtension {
         return [[Supersonic sharedInstance] isAdAvailable];
     }
     
-    char *getRewardedVideoPlacementInfo(const char *placementName){
+    const char *getRewardedVideoPlacementInfo(const char *placementName){
         NSLog(@"SupersonicExtension getRewardedVideoPlacementInfo");
         NSString *pName = [NSString stringWithUTF8String:placementName];
         SupersonicPlacementInfo * pInfo = [[Supersonic sharedInstance] getRVPlacementInfo:pName];
-        return placement2JSON(pInfo);
+        NSString *res = placement2JSON(pInfo);
+        if(res == NULL) return NULL;
+        return [res UTF8String];
     }
 
 }

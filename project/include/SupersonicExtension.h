@@ -10,7 +10,7 @@ namespace SupersonicExtension {
 
 	bool showRewardedVideo(const char *placementName);
 	bool isRewardedVideoAvailable();
-	char *getRewardedVideoPlacementInfo(const char *placementName);
+	const char *getRewardedVideoPlacementInfo(const char *placementName);
 	
 }
 
