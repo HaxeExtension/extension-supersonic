@@ -30,6 +30,17 @@ static const char* InterstitialClick = "onInterstitialClick";
 static const char* InterstitialClose = "onInterstitialClose";
 static const char* InterstitialOpen = "onInterstitialOpen";
 
+char *placement2JSON(SupersonicPlacementInfo * pInfo){
+    if(pInfo == NULL) return NULL;
+    NSString * rewardName = [pInfo rewardName];
+    NSNumber * rewardAmount = [pInfo rewardAmount];
+    //NSNumber * placementId = [pInfo placementId];
+    NSString * placementName = [pInfo placementName];
+    return NULL;
+    //return "{\"placementId\":"+placement.getPlacementId()+",\"placementName\":\""+placement.getPlacementName()+"\",\"rewardName\":\""+placement.getRewardName()+"\",\"rewardAmount\":"+placement.getRewardAmount()+"}";
+}        
+
+
 namespace SupersonicExtension {
 	
 	UIViewController *root;
@@ -45,30 +56,43 @@ namespace SupersonicExtension {
         [Supersonic sharedInstance];
         [[Supersonic sharedInstance] setRVDelegate:[RVDelegate alloc]];
         [[Supersonic sharedInstance] initRVWithAppKey:appKey withUserId:adId];
+        NSLog(@"SupersonicExtension init complete");
     }
     
     bool showRewardedVideo(const char *placementName){
-        [[Supersonic sharedInstance] showRV];
+        NSLog(@"SupersonicExtension showRewardedVideo");
+        NSString *pName = [NSString stringWithUTF8String:placementName];
+        [[Supersonic sharedInstance] showRVWithPlacementName:pName];
         return true;
     }
 
     bool showInterstitial(const char *placementName){
+        NSLog(@"SupersonicExtension showInterstitial");
+        NSString *pName = [NSString stringWithUTF8String:placementName];
+        [[Supersonic sharedInstance] showISWithViewController:root placementName:pName];
         return true;
     }
 
     void cacheInterstitial(){
-
+        NSLog(@"SupersonicExtension cacheInterstitial");
+        [[Supersonic sharedInstance] loadIS];
     }
 
     bool isInterstitialReady(){
-        return false;
+        NSLog(@"SupersonicExtension isInterstitialReady");
+        return [[Supersonic sharedInstance] isInterstitialAvailable];
     }
 
     bool isRewardedVideoAvailable(){
-        return false;
+        NSLog(@"SupersonicExtension isRewardedVideoAvailable");
+        return [[Supersonic sharedInstance] isAdAvailable];
     }
     
     char *getRewardedVideoPlacementInfo(const char *placementName){
-        return NULL;
+        NSLog(@"SupersonicExtension getRewardedVideoPlacementInfo");
+        NSString *pName = [NSString stringWithUTF8String:placementName];
+        SupersonicPlacementInfo * pInfo = [[Supersonic sharedInstance] getRVPlacementInfo:pName];
+        return placement2JSON(pInfo);
     }
+
 }
