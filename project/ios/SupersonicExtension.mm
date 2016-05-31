@@ -3,7 +3,18 @@
 #import <AdSupport/ASIdentifierManager.h>
 #import "Supersonic/Supersonic.h"
 
-extern "C" void reportSupersonicEvent (const char* event, const char *data);
+extern "C" void reportSupersonicEvent2Haxe (const char* event, const char *data);
+
+void reportSupersonicEvent (const char* event, const char *data){
+    if ([NSThread isMainThread]){
+        reportSupersonicEvent2Haxe(event,data);
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            reportSupersonicEvent2Haxe(event,data);
+        });
+    }
+}
+
 
 NSString *placement2JSON(SupersonicPlacementInfo * pInfo){
     if(pInfo == NULL) return @"{}";
@@ -12,7 +23,6 @@ NSString *placement2JSON(SupersonicPlacementInfo * pInfo){
 
 #include "RVDelegate.mm"
 #include "ISDelegate.mm"
-
 
 namespace SupersonicExtension {
 	
@@ -31,41 +41,33 @@ namespace SupersonicExtension {
 
         [[Supersonic sharedInstance] initISWithAppKey:appKey withUserId:adId];
         [[Supersonic sharedInstance] initRVWithAppKey:appKey withUserId:adId];
-        
-        NSLog(@"SupersonicExtension init complete");
     }
     
     bool showRewardedVideo(const char *placementName){
-        NSLog(@"SupersonicExtension showRewardedVideo");
         NSString *pName = [NSString stringWithUTF8String:placementName];
         [[Supersonic sharedInstance] showRVWithPlacementName:pName];
         return true;
     }
 
     bool showInterstitial(const char *placementName){
-        NSLog(@"SupersonicExtension showInterstitial");
         NSString *pName = [NSString stringWithUTF8String:placementName];
         [[Supersonic sharedInstance] showISWithViewController:root placementName:pName];
         return true;
     }
 
     void cacheInterstitial(){
-        NSLog(@"SupersonicExtension cacheInterstitial");
         [[Supersonic sharedInstance] loadIS];
     }
 
     bool isInterstitialReady(){
-        NSLog(@"SupersonicExtension isInterstitialReady");
         return [[Supersonic sharedInstance] isInterstitialAvailable];
     }
 
     bool isRewardedVideoAvailable(){
-        NSLog(@"SupersonicExtension isRewardedVideoAvailable");
         return [[Supersonic sharedInstance] isAdAvailable];
     }
     
     const char *getRewardedVideoPlacementInfo(const char *placementName){
-        NSLog(@"SupersonicExtension getRewardedVideoPlacementInfo");
         NSString *pName = [NSString stringWithUTF8String:placementName];
         SupersonicPlacementInfo * pInfo = [[Supersonic sharedInstance] getRVPlacementInfo:pName];
         NSString *res = placement2JSON(pInfo);

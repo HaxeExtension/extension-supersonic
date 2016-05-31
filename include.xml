@@ -24,6 +24,7 @@
 
 	<section if="ios">
 		<ndll name="SupersonicExtension" />
+		<ios linker-flags="-ObjC" />
 		<dependency path="frameworks/Supersonic.framework" />
 		<dependency name="AdSupport.framework" />
 		<dependency name="AudioToolbox.framework" />
@@ -132,8 +133,8 @@
 		</section>
 
 		<section if="vungle-supersonic">
-			<!--dependency path="frameworks/SUVungleAdapter/SUVungleAdapter.framework" />
-			<dependency path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/VungleSDK.framework" /-->
+			<dependency path="frameworks/SUVungleAdapter/SUVungleAdapter.framework" />
+			<dependency path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/VungleSDK.framework" />
 
 			<dependency name="libsqlite3.tbd" />
 			<dependency name="WebKit.framework" />
