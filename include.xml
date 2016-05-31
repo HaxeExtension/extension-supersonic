@@ -82,8 +82,9 @@
 		</section>
 
 		<section if="flurry-supersonic">
-			<!--dependency path="frameworks/SUFlurryAdapter/SUFlurryAdapter.framework" />
-			<dependency path="frameworks/SUFlurryAdapter/Flurry/......framework" /-->
+			<dependency path="frameworks/SUFlurryAdapter/SUFlurryAdapter.framework" />
+			<dependency path="frameworks/SUFlurryAdapter/Flurry/Flurry/libFlurry_7.5.2.a" />
+			<dependency path="frameworks/SUFlurryAdapter/Flurry/FlurryAds/libFlurryAds_7.5.2.a" />
 		</section>
 
 		<section if="hyprmx-supersonic" >
