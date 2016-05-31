@@ -129,10 +129,9 @@
 			<set name="fobjc-arc-included" />
 		</section>
 
-
 		<section if="nativex-supersonic" >
-			<!--dependency path="frameworks/SUNativeXAdapter/SUNativeXAdapter.framework" />
-			<dependency path="frameworks/SUNativeXAdapter/NativeXiOSSDK/libNativeXSDK.a" /-->
+			<dependency path="frameworks/SUNativeXAdapter/SUNativeXAdapter.framework" />
+			<dependency path="frameworks/SUNativeXAdapter/NativeXiOSSDK/libNativeXSDK.a" />
 			<dependency name="libsqlite3.0.tbd" />
 		</section>
 
