@@ -136,8 +136,9 @@
 		</section>
 
 		<section if="tapjoy-supersonic">
-			<!--dependency path="frameworks/SUTapJoyAdapter/SUTapJoyAdapter.framework" />
-			<dependency path="frameworks/SUTapJoyAdapter/TapJoy/Tapjoy.embeddedframework/Tapjoy.framework" /-->
+			<dependency path="frameworks/SUTapJoyAdapter/SUTapJoyAdapter.framework" />
+			<dependency path="frameworks/SUTapJoyAdapter/TapJoy/Tapjoy.embeddedframework/Tapjoy.framework" />
+			<assets path="frameworks/SUTapJoyAdapter/TapJoy/Tapjoy.embeddedframework/Resources/TapjoyResources.bundle" rename="TapjoyResources.bundle" />
 			<dependency name="CoreData.framework" />
 			<dependency name="libc++.tbd" />
 			<dependency name="libsqlite3.0.tbd" />
@@ -158,6 +159,7 @@
 		<section if="vungle-supersonic">
 			<dependency path="frameworks/SUVungleAdapter/SUVungleAdapter.framework" />
 			<dependency path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/VungleSDK.framework" />
+			<assets path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/Resources" rename="" />
 
 			<dependency name="libsqlite3.tbd" />
 			<dependency name="WebKit.framework" />
