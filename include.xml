@@ -55,16 +55,20 @@
 			<dependency path="frameworks/SUAdColonyAdapter/SUAdColonyAdapter.framework" />
 			<dependency path="frameworks/SUAdColonyAdapter/AdColony/AdColony.framework" />
 			<dependency name="libz.1.2.5.tbd" />
+			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
+			<set name="fobjc-arc-included" />
 		</section>
 
 		<section if="admob-supersonic">
 			<dependency path="frameworks/SUAdMobAdapter/SUAdMobAdapter.framework" />
 			<dependency path="frameworks/SUAdMobAdapter/AdMob/GoogleMobileAds.framework" />
+			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
+			<set name="fobjc-arc-included" />
 		</section>
 
 		<section if="applovin-supersonic">
-			<!--dependency path="frameworks/SUAppLovinAdapter/SUAppLovinAdapter.framework" />
-			<dependency path="frameworks/SUAppLovinAdapter/Applovin/libAppLovinSdk.a" /-->
+			<dependency path="frameworks/SUAppLovinAdapter/SUAppLovinAdapter.framework" />			
+			<dependency path="frameworks/SUAppLovinAdapter/Applovin/libAppLovinSdk.a" />
 		</section>
 
 		<section if="chartboost-supersonic">
@@ -105,6 +109,8 @@
 			<dependency name="libsqlite3.tbd" />
 			<dependency name="AudioToolbox.framework" />
 			<dependency name="Accounts.framework" />
+			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
+			<set name="fobjc-arc-included" />
 		</section>
 
 
@@ -124,6 +130,8 @@
 			<dependency name="MapKit.framework" />
 			<dependency name="PassKit.framework" />
 			<dependency name="Twitter.framework" />
+			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
+			<set name="fobjc-arc-included" />
 		</section>
 
 		<section if="unityads-supersonic">
