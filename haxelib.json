@@ -4,10 +4,10 @@
 	"license": "MIT",
 	"tags": ["openfl", "supersonic", "ads"],
 	"description": "Aupersonic extension for OpenFL",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"dependencies": {
 		"extension-googleplayservices-lib": ""
 	},	
-	"releasenote": "Android implementationcompleted.",
+	"releasenote": "iOS and Android implementation completed.",
 	"contributors": ["fbricker"]
 }
