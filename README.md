@@ -9,7 +9,10 @@ More info on Supersonic: http://developers.supersonic.com/
 
 To install this library, you can simply get the library from haxelib like this:
 ```bash
-haxelib install extension-facebookads
+haxelib git https://github.com/SempaiGames/extension-supersonic
+
+(note that you do haxelib install extension-supersonic, you won't get the last version of the extension, since the extension is bigger than haxelib max allowed package).
+
 ```
 
 Once this is done, you just need to add this to your project.xml
@@ -58,12 +61,7 @@ class SimpleExample {
 		trace("Supersonic Event: type=" + e.type + " | data=" + e.data);
 		if(e.type == SupersonicEvent.RewardedVideoAdRewarded){
 			var pi = e.getPlacementInfo();
-			if(pi!=null) {
-				trace(" :: placementId: " + pi.placementId +
-					  " :: placementName: " + pi.placementName +
-					  " :: rewardName: " + pi.rewardName +
-					  " :: rewardAmount: " + pi.rewardAmount );
-			}
+			if(pi!=null) pi.dump();
 		}
 	}
 
