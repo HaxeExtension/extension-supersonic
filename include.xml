@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
+	<section if="ios || android">
+		<echo value="supersonic-extension: Adding adcolony dependencies"	if="adcolony-supersonic" />
+		<echo value="supersonic-extension: Adding admob dependencies"		if="admob-supersonic" />
+		<echo value="supersonic-extension: Adding applovin dependencies"	if="applovin-supersonic" />
+		<echo value="supersonic-extension: Adding chartboost dependencies"	if="chartboost-supersonic" />
+		<echo value="supersonic-extension: Adding facebook dependencies"	if="facebook-supersonic" />
+		<echo value="supersonic-extension: Adding flurry dependencies"		if="flurry-supersonic" />
+		<echo value="supersonic-extension: Adding hyprmx dependencies"		if="hyprmx-supersonic" />
+		<echo value="supersonic-extension: Adding inmobi dependencies"		if="inmobi-supersonic" />
+		<echo value="supersonic-extension: Adding mediabrix dependencies"	if="mediabrix-supersonic" />
+		<echo value="supersonic-extension: Adding nativex dependencies"		if="nativex-supersonic" />
+		<echo value="supersonic-extension: Adding tapjoy dependencies"		if="tapjoy-supersonic" />
+		<echo value="supersonic-extension: Adding unityads dependencies"	if="unityads-supersonic" />
+		<echo value="supersonic-extension: Adding vungle dependencies"		if="vungle-supersonic" />
+	</section>
 
 	<section if="android">
 		<haxelib name="extension-googleplayservices-lib" />
@@ -101,10 +116,12 @@
 		</section>
 
 		<section if="mediabrix-supersonic" >
-			<!--dependency path="frameworks/SUMediaBrixAdapter/SUMediaBrixAdapter.framework" />
+			<echo value="supersonic-extension: ***************************************************************************** *****" />
+			<echo value="supersonic-extension: Please note that MediaBrix may generate conflicts with some other networks... *****" />
+			<echo value="supersonic-extension: ***************************************************************************** *****" />
+			<dependency path="frameworks/SUMediaBrixAdapter/SUMediaBrixAdapter.framework" />
 			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/MBRXMoatMobileAppKit.framework" />
-			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/libMediaBrix.a" /-->
-
+			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/libMediaBrix.a" />
 			<dependency name="libsqlite3.tbd" />
 			<dependency name="AudioToolbox.framework" />
 			<dependency name="Accounts.framework" />
@@ -149,22 +166,6 @@
 
 		<template path="template/PROJ-Info.plist" rename="PiratePig-Info.plist" />
 
-	</section>
-
-	<section if="ios || android">
-		<echo value="supersonic-extension: Adding adcolony dependencies"	if="adcolony-supersonic" />
-		<echo value="supersonic-extension: Adding admob dependencies"		if="admob-supersonic" />
-		<echo value="supersonic-extension: Adding applovin dependencies"	if="applovin-supersonic" />
-		<echo value="supersonic-extension: Adding chartboost dependencies"	if="chartboost-supersonic" />
-		<echo value="supersonic-extension: Adding facebook dependencies"	if="facebook-supersonic" />
-		<echo value="supersonic-extension: Adding flurry dependencies"		if="flurry-supersonic" />
-		<echo value="supersonic-extension: Adding hyprmx dependencies"		if="hyprmx-supersonic" />
-		<echo value="supersonic-extension: Adding inmobi dependencies"		if="inmobi-supersonic" />
-		<echo value="supersonic-extension: Adding mediabrix dependencies"	if="mediabrix-supersonic" />
-		<echo value="supersonic-extension: Adding nativex dependencies"		if="nativex-supersonic" />
-		<echo value="supersonic-extension: Adding tapjoy dependencies"		if="tapjoy-supersonic" />
-		<echo value="supersonic-extension: Adding unityads dependencies"	if="unityads-supersonic" />
-		<echo value="supersonic-extension: Adding vungle dependencies"		if="vungle-supersonic" />
 	</section>
 
 </project>
