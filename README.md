@@ -10,10 +10,8 @@ More info on Supersonic: http://developers.supersonic.com/
 To install this library, you can simply get the library from haxelib like this:
 ```bash
 haxelib git https://github.com/SempaiGames/extension-supersonic
-
-(note that you do haxelib install extension-supersonic, you won't get the last version of the extension, since the extension is bigger than haxelib max allowed package).
-
 ```
+* Please note that you if do **haxelib install extension-supersonic**, you won't get the last version of the extension, since the extension is bigger than haxelib max allowed package.
 
 Once this is done, you just need to add this to your project.xml
 ```xml
