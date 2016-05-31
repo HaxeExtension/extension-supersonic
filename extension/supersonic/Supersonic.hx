@@ -93,7 +93,7 @@ class Supersonic extends EventDispatcher{
 
 	public static function getRewardedVideoPlacementInfo(placementName:String):PlacementInfo {
 		var pi = _getRewardedVideoPlacementInfo(placementName);
-		if(pi==null) return null;
+		if(pi==null || pi=="" || pi=="{}") return null;
 		return new PlacementInfo(pi);
 	}
 

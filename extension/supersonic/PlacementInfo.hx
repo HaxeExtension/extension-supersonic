@@ -11,15 +11,15 @@ class PlacementInfo {
 			var aux = haxe.Json.parse(json);
 			this.placementName = aux.placementName;
 			this.rewardName = aux.rewardName;
-			this.rewardAmount = aux.rewardAmount;			
+			this.rewardAmount = aux.rewardAmount;
 		}catch(e:Dynamic){
 			trace("PlacementInfo Parse Exception: "+e);
 		}
 	}
 
 	public function dump(){
-		trace("PlacementInfo :: placementName=" + this.placementName +
-			  " | rewardName=" + this.rewardName +
-			  " | rewardAmount=" + this.rewardAmount );		
+		trace("PlacementInfo :: placementName='" + this.placementName +
+			  "' | rewardName='" + this.rewardName +
+			  "' | rewardAmount=" + this.rewardAmount );
 	}
 }
