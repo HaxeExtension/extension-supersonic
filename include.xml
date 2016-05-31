@@ -151,16 +151,15 @@
 		</section>
 
 		<section if="unityads-supersonic">
-			<!--dependency path="frameworks/SUUnityAdsAdapter/SUUnityAdsAdapter.framework" />
+			<dependency path="frameworks/SUUnityAdsAdapter/SUUnityAdsAdapter.framework" />
 			<dependency path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.framework" />
-			<dependency path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.bundle" /-->
+			<assets path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.bundle" rename="UnityAds.bundle" />
 		</section>
 
 		<section if="vungle-supersonic">
 			<dependency path="frameworks/SUVungleAdapter/SUVungleAdapter.framework" />
 			<dependency path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/VungleSDK.framework" />
 			<assets path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/Resources" rename="" />
-
 			<dependency name="libsqlite3.tbd" />
 			<dependency name="WebKit.framework" />
 		</section>
