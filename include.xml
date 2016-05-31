@@ -90,14 +90,12 @@
 		<section if="hyprmx-supersonic" >
 			<dependency path="frameworks/SUHyprMXAdapter/SUHyprMXAdapter.framework" />
 			<dependency path="frameworks/SUHyprMXAdapter/HyprMX/HyprMX.framework" />
-			
 			<dependency name="Accelerate.framework" />
 		</section>
 
 		<section if="inmobi-supersonic" >
-			<!--dependency path="frameworks/SUInMobiAdapter/SUInMobiAdapter.framework" />
-			<dependency path="frameworks/SUInMobiAdapter/InMobi/InMobi......framework" /-->
-
+			<dependency path="frameworks/SUInMobiAdapter/SUInMobiAdapter.framework" />
+			<dependency path="frameworks/SUInMobiAdapter/InMobi/libInMobi-5.2.0.a" />
 			<dependency name="SafariServices.framework" />
 			<dependency name="libsqlite3.0.tbd" />
 		</section>
