@@ -57,6 +57,9 @@ class SimpleExample {
 
 	public function onSupersonicEvent(e:SupersonicEvent){
 		trace("Supersonic Event: type=" + e.type + " | data=" + e.data);
+		if(e.type == SupersonicEvent.InterstitialInitSuccess){
+			Supersonic.cacheInterstitial();
+		}
 		if(e.type == SupersonicEvent.RewardedVideoAdRewarded){
 			var pi = e.getPlacementInfo();
 			if(pi!=null) pi.dump();
