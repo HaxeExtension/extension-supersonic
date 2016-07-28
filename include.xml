@@ -164,7 +164,7 @@
 			<dependency name="WebKit.framework" />
 		</section>
 
-		<template path="template/PROJ-Info.plist" rename="PiratePig-Info.plist" />
+		<template path="template/PROJ-Info.plist" rename="${APP_TITLE}-Info.plist" />
 
 	</section>
 
