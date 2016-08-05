@@ -75,7 +75,7 @@ public class SupersonicExtension extends Extension {
 				mMediationAgent.initInterstitial(mainActivity, appKey, getGAID());
 
 				try{
-					mMediationAgent.shouldTrackNetworkState(true);
+					mMediationAgent.shouldTrackNetworkState(mainActivity.getApplicationContext(),true);
 				}catch(Exception e){
 					Log.i(TAG,"Could not enable TrackNetworkState. Not to worry :/");
 				}
