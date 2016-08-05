@@ -118,7 +118,7 @@ public class SupersonicExtension extends Extension {
 		return returnValue;
 	}
 
-	public static void showRewardedVideo(String placementName){
+	public static void showRewardedVideo(final String placementName){
 		mainActivity.runOnUiThread(new Runnable() {
 			public void run() { 
 				mMediationAgent.showRewardedVideo(placementName);	
@@ -136,7 +136,7 @@ public class SupersonicExtension extends Extension {
 		    }
 		});
 
-		Placement returnValue;
+		Placement returnValue = null;
 		try {
 		    returnValue = result.get();
 		} catch (Exception e) {
