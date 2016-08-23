@@ -42,23 +42,27 @@ import com.supersonic.mediationsdk.sdk.SupersonicFactory;
 public class SupersonicExtension extends Extension {
 
 	protected static HaxeObject _callback = null;
-	private static Supersonic mMediationAgent;
+	private static Supersonic mMediationAgent = null;
 	private static final String TAG = "SupersonicExtension";
 
 	//// GENERIC
 	///////////////////////////////////////////////////////////////////////////
 
 	public static void init(final String appKey, HaxeObject callback){
-		if(_callback!=null) return;
 		Log.i(TAG,"init called!");
 		_callback = callback;
 
-		//Get the mediation publisher instance 
-		mMediationAgent = SupersonicFactory.getInstance();
-		//Set the Rewarded Video Listener
-		mMediationAgent.setRewardedVideoListener(new MyRewardedVideoListener());
-		//Set the Interstitial Listener
-		mMediationAgent.setInterstitialListener(new MyInterstitialListener());		
+		if(mMediationAgent == null){
+			//Get the mediation publisher instance 
+			mMediationAgent = SupersonicFactory.getInstance();
+			//Set the Rewarded Video Listener
+			mMediationAgent.setRewardedVideoListener(new MyRewardedVideoListener());
+			//Set the Interstitial Listener
+			mMediationAgent.setInterstitialListener(new MyInterstitialListener());
+			Log.i(TAG,"INIT");
+		} else {
+			Log.i(TAG,"INIT AGAIN!");			
+		}
 
 		mainActivity.runOnUiThread(new Runnable() {
 			public void run() { 

@@ -15,7 +15,7 @@ using namespace SupersonicExtension;
 AutoGCRoot* eventHandle = NULL;
 
 static value supersonicextension_init(value app_key, value onEvent){
-	eventHandle = new AutoGCRoot(onEvent);
+	if(eventHandle == NULL) eventHandle = new AutoGCRoot(onEvent);
 	init(val_string(app_key));
 	return alloc_null();
 }

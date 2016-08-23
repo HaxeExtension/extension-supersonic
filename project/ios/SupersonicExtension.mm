@@ -26,18 +26,25 @@ NSString *placement2JSON(SupersonicPlacementInfo * pInfo){
 
 namespace SupersonicExtension {
 	
-	UIViewController *root;
+	UIViewController *root = NULL;
     
 	void init(const char *__app_key){
-		root = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+
+        if ( root == NULL ){
+            NSLog(@"SupersonicExtension::init");
+            root = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+
+            [[Supersonic sharedInstance] setISDelegate:[ISDelegate alloc]];
+            [[Supersonic sharedInstance] setRVDelegate:[RVDelegate alloc]];        
+        } else {
+            NSLog(@"SupersonicExtension::init again!");
+        }
+
         NSString* appKey = [NSString stringWithUTF8String:__app_key];
         NSString* adId = @"TEST";
         if([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
             adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
         }
-
-        [[Supersonic sharedInstance] setISDelegate:[ISDelegate alloc]];
-        [[Supersonic sharedInstance] setRVDelegate:[RVDelegate alloc]];
 
         [[Supersonic sharedInstance] initISWithAppKey:appKey withUserId:adId];
         [[Supersonic sharedInstance] initRVWithAppKey:appKey withUserId:adId];

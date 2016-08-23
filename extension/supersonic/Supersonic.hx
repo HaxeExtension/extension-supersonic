@@ -48,39 +48,45 @@ class Supersonic extends EventDispatcher{
 
 	private static inline var SUPERSONIC_PATH:String = "org.haxe.extension.supersonic.SupersonicExtension";
 	private static var instance:Supersonic = null;
+	#if android
+	private static var _init:String->Supersonic->Void = null;
+	#elseif ios
+	private static var _init:String->Dynamic->Void = null;
+	#end
+
+
 
 	public static function init(appKey:String) {
-		if(instance!=null) return;
-		instance = new Supersonic();
+		if(instance==null) instance = new Supersonic();
 
 		#if android
 			try{
-				var _init:String->Supersonic->Void = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
+				if(_init == null){
+					_init = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
+					isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
+					showRewardedVideo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
+					_getRewardedVideoPlacementInfo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
 
-				isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
-				showRewardedVideo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
-				_getRewardedVideoPlacementInfo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
-
-				cacheInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "cacheInterstitial", "()V");
-				isInterstitialReady = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isInterstitialReady", "()Z");
-				showInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showInterstitial", "(Ljava/lang/String;)V");
-
+					cacheInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "cacheInterstitial", "()V");
+					isInterstitialReady = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isInterstitialReady", "()Z");
+					showInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showInterstitial", "(Ljava/lang/String;)V");					
+				}
 				_init(appKey, instance);
 			}catch(e:Dynamic){
 				trace("Android INIT Exception: "+e);
 			}
 		#elseif ios
 			try{
-				var _init:String->Dynamic->Void = cpp.Lib.load("SupersonicExtension","supersonicextension_init",2);
+				if(_init == null){
+					_init = cpp.Lib.load("SupersonicExtension","supersonicextension_init",2);
+					isRewardedVideoAvailable = cpp.Lib.load("SupersonicExtension","supersonicextension_is_rewarded_video_available",0);
+					showRewardedVideo = cpp.Lib.load("SupersonicExtension","supersonicextension_rewardedvideo_show",1);
+					_getRewardedVideoPlacementInfo = cpp.Lib.load("SupersonicExtension","supersonicextension_get_rewarded_video_placement_info",1);
 
-				isRewardedVideoAvailable = cpp.Lib.load("SupersonicExtension","supersonicextension_is_rewarded_video_available",0);
-				showRewardedVideo = cpp.Lib.load("SupersonicExtension","supersonicextension_rewardedvideo_show",1);
-				_getRewardedVideoPlacementInfo = cpp.Lib.load("SupersonicExtension","supersonicextension_get_rewarded_video_placement_info",1);
-
-				cacheInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_cache_interstitial",0);
-				isInterstitialReady = cpp.Lib.load("SupersonicExtension","supersonicextension_is_interstitial_ready",0);
-				showInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_interstitial_show",1);
-
+					cacheInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_cache_interstitial",0);
+					isInterstitialReady = cpp.Lib.load("SupersonicExtension","supersonicextension_is_interstitial_ready",0);
+					showInterstitial = cpp.Lib.load("SupersonicExtension","supersonicextension_interstitial_show",1);
+				}
 				_init(appKey, instance._onEvent);
 			}catch(e:Dynamic){
 				trace("iOS INIT Exception: "+e);
