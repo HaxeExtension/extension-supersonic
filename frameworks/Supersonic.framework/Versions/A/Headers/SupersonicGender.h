@@ -7,10 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum supersonicGender {
+typedef NS_ENUM(NSInteger, SupersonicGender) {
     SUPERSONIC_USER_MALE,
     SUPERSONIC_USER_FEMALE,
     SUPERSONIC_USER_UNKNOWN
-} SupersonicGender;
+};
 
 #endif

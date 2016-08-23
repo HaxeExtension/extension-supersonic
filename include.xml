@@ -67,50 +67,28 @@
 		<dependency name="libz.tbd" />
 
 		<section if="adcolony-supersonic">
-			<dependency path="frameworks/SUAdColonyAdapter/SUAdColonyAdapter.framework" />
-			<dependency path="frameworks/SUAdColonyAdapter/AdColony/AdColony.framework" />
+			<dependency path="frameworks/SUAdColonyAdapter.framework" />
 			<dependency name="libz.1.2.5.tbd" />
-			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
-			<set name="fobjc-arc-included" />
 		</section>
 
 		<section if="admob-supersonic">
-			<dependency path="frameworks/SUAdMobAdapter/SUAdMobAdapter.framework" />
-			<dependency path="frameworks/SUAdMobAdapter/AdMob/GoogleMobileAds.framework" />
+			<dependency path="frameworks/SUAdMobAdapter.framework" />
 			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
 			<set name="fobjc-arc-included" />
 		</section>
 
-		<section if="applovin-supersonic">
-			<dependency path="frameworks/SUAppLovinAdapter/SUAppLovinAdapter.framework" />			
-			<dependency path="frameworks/SUAppLovinAdapter/Applovin/libAppLovinSdk.a" />
-		</section>
-
-		<section if="chartboost-supersonic">
-			<dependency path="frameworks/SUChartboostAdapter/SUChartboostAdapter.framework" />
-			<dependency path="frameworks/SUChartboostAdapter/Chartboost/Chartboost.framework" />
-		</section>
-
-		<section if="facebook-supersonic">
-			<dependency path="frameworks/SUFacebookAdapter/SUFacebookAdapter.framework" />
-			<dependency path="frameworks/SUFacebookAdapter/facebook/FBAudienceNetwork.framework" />
-		</section>
-
-		<section if="flurry-supersonic">
-			<dependency path="frameworks/SUFlurryAdapter/SUFlurryAdapter.framework" />
-			<dependency path="frameworks/SUFlurryAdapter/Flurry/Flurry/libFlurry_7.5.2.a" />
-			<dependency path="frameworks/SUFlurryAdapter/Flurry/FlurryAds/libFlurryAds_7.5.2.a" />
-		</section>
+		<dependency path="frameworks/SUAppLovinAdapter.framework" if="applovin-supersonic"/>
+		<dependency path="frameworks/SUChartboostAdapter.framework" if="chartboost-supersonic"/>
+		<dependency path="frameworks/SUFacebookAdapter.framework" if="facebook-supersonic"/>
+		<dependency path="frameworks/SUFlurryAdapter.framework" if="flurry-supersonic"/>
 
 		<section if="hyprmx-supersonic" >
-			<dependency path="frameworks/SUHyprMXAdapter/SUHyprMXAdapter.framework" />
-			<dependency path="frameworks/SUHyprMXAdapter/HyprMX/HyprMX.framework" />
+			<dependency path="frameworks/SUHyprMXAdapter.framework" />
 			<dependency name="Accelerate.framework" />
 		</section>
 
 		<section if="inmobi-supersonic" >
-			<dependency path="frameworks/SUInMobiAdapter/SUInMobiAdapter.framework" />
-			<dependency path="frameworks/SUInMobiAdapter/InMobi/libInMobi-5.2.0.a" />
+			<dependency path="frameworks/SUInMobiAdapter.framework" />
 			<dependency name="SafariServices.framework" />
 			<dependency name="libsqlite3.0.tbd" />
 		</section>
@@ -119,26 +97,19 @@
 			<echo value="supersonic-extension: ***************************************************************************** *****" />
 			<echo value="supersonic-extension: Please note that MediaBrix may generate conflicts with some other networks... *****" />
 			<echo value="supersonic-extension: ***************************************************************************** *****" />
-			<dependency path="frameworks/SUMediaBrixAdapter/SUMediaBrixAdapter.framework" />
-			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/MBRXMoatMobileAppKit.framework" />
-			<dependency path="frameworks/SUMediaBrixAdapter/MediaBrix/libMediaBrix.a" />
+			<dependency path="frameworks/SUMediaBrixAdapter.framework" />
 			<dependency name="libsqlite3.tbd" />
-			<dependency name="AudioToolbox.framework" />
 			<dependency name="Accounts.framework" />
-			<ios linker-flags="-fobjc-arc" unless="fobjc-arc-included" />
-			<set name="fobjc-arc-included" />
 		</section>
 
 		<section if="nativex-supersonic" >
-			<dependency path="frameworks/SUNativeXAdapter/SUNativeXAdapter.framework" />
-			<dependency path="frameworks/SUNativeXAdapter/NativeXiOSSDK/libNativeXSDK.a" />
+			<dependency path="frameworks/SUNativeXAdapter.framework" />
 			<dependency name="libsqlite3.0.tbd" />
 		</section>
 
 		<section if="tapjoy-supersonic">
 			<dependency path="frameworks/SUTapJoyAdapter/SUTapJoyAdapter.framework" />
-			<dependency path="frameworks/SUTapJoyAdapter/TapJoy/Tapjoy.embeddedframework/Tapjoy.framework" />
-			<assets path="frameworks/SUTapJoyAdapter/TapJoy/Tapjoy.embeddedframework/Resources/TapjoyResources.bundle" rename="TapjoyResources.bundle" />
+			<assets path="frameworks/SUTapJoyAdapter/Resources/TapjoyResources.bundle" rename="TapjoyResources.bundle" />
 			<dependency name="CoreData.framework" />
 			<dependency name="libc++.tbd" />
 			<dependency name="libsqlite3.0.tbd" />
@@ -152,14 +123,12 @@
 
 		<section if="unityads-supersonic">
 			<dependency path="frameworks/SUUnityAdsAdapter/SUUnityAdsAdapter.framework" />
-			<dependency path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.framework" />
-			<assets path="frameworks/SUUnityAdsAdapter/UnityAds/UnityAds.bundle" rename="UnityAds.bundle" />
+			<assets path="frameworks/SUUnityAdsAdapter/UnityAds.bundle" rename="UnityAds.bundle" />
 		</section>
 
 		<section if="vungle-supersonic">
 			<dependency path="frameworks/SUVungleAdapter/SUVungleAdapter.framework" />
-			<dependency path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/VungleSDK.framework" />
-			<assets path="frameworks/SUVungleAdapter/Vungle/VungleSDK.embeddedframework/Resources" rename="" />
+			<assets path="frameworks/SUVungleAdapter/Resources" rename="" />
 			<dependency name="libsqlite3.tbd" />
 			<dependency name="WebKit.framework" />
 		</section>

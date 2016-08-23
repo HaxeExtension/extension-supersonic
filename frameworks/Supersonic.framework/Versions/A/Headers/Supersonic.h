@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  *              Once an Ad Network has an available video, you can use the below function to define the exact Placement you want to show an ad from.
  *              The Reward settings of this Placement will be pulled from the Supersonic server:
  */
-- (void)showRVWithPlacementName:(NSString *)placementName;
+- (void)showRVWithPlacementName:(nullable NSString *)placementName;
 
 
 - (void)showRVWithViewController:(nullable UIViewController*)viewController;
@@ -188,8 +188,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)showOW;
 
+- (void)showOWWithViewController:(nullable UIViewController *)viewController;
 
-- (void)showOWWithViewController:(nullable UIViewController*)viewController;
+- (void)showOWWithPlacement:(NSString *)placementName;
+
+- (void)showOWWithViewController:(nullable UIViewController *)viewController
+                       placement:(NSString *)placementName;
 
 /*!
  * @discussion When using client-side callbacks, at any point during the user engagement with the app, you can receive the users total credits and any new credits the user has earned.

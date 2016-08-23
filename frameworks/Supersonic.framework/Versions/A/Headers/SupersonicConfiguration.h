@@ -23,8 +23,9 @@
 @property (nonatomic, strong)   NSString            *pluginVersion;
 @property (nonatomic, strong)   NSString            *pluginFrameworkVersion;
 @property (nonatomic, strong)   NSNumber            *maxVideosPerIteration;
-@property (nonatomic        )   int                 userAge;
-@property (nonatomic        )   SupersonicGender    userGender;
+@property (nonatomic, assign)   int                 userAge;
+@property (nonatomic, assign)   SupersonicGender    userGender;
+@property (nonatomic, assign)   BOOL                trackReachability;
 
 + (SupersonicConfiguration *)getConfiguration;
 
