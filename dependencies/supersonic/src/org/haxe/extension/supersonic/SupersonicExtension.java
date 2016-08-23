@@ -31,6 +31,12 @@ import java.io.IOException;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.lang.Exception;
+
 //Import the Supersonic Class
 import com.supersonic.mediationsdk.logger.SupersonicError;
 import com.supersonic.mediationsdk.model.Placement;
@@ -73,7 +79,7 @@ public class SupersonicExtension extends Extension {
 				mMediationAgent.initInterstitial(mainActivity, appKey, getGAID());
 
 				try{
-					mMediationAgent.shouldTrackNetworkState(true);
+					mMediationAgent.shouldTrackNetworkState(mainActivity.getApplicationContext(),true);
 				}catch(Exception e){
 					Log.i(TAG,"Could not enable TrackNetworkState. Not to worry :/");
 				}
@@ -98,31 +104,90 @@ public class SupersonicExtension extends Extension {
 	///////////////////////////////////////////////////////////////////////////
 
 	public static boolean isRewardedVideoAvailable() {
-		return mMediationAgent.isRewardedVideoAvailable();
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		Future<Boolean> result = executor.submit(new Callable<Boolean>() {
+		    public Boolean call() throws Exception {
+		        return mMediationAgent.isRewardedVideoAvailable();
+		    }
+		});
+
+		boolean returnValue= false;
+		try {
+		    returnValue = result.get();
+		} catch (Exception e) {
+		   //handle exception
+			Log.i(TAG,"Could not get rewarded is available. " + e.getCause());
+		}
+
+		return returnValue;
 	}
 
-	public static void showRewardedVideo(String placementName){
-		mMediationAgent.showRewardedVideo(placementName);	
+	public static void showRewardedVideo(final String placementName){
+		mainActivity.runOnUiThread(new Runnable() {
+			public void run() { 
+				mMediationAgent.showRewardedVideo(placementName);	
+			}
+		});
+		
 	}
 
-	public static String getRewardedVideoPlacementInfo(String placementName){
-		Placement placement = mMediationAgent.getRewardedVideoPlacementInfo(placementName);
-		return placement2JSON(placement);
+	public static String getRewardedVideoPlacementInfo(final String placementName){
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		Future<Placement> result = executor.submit(new Callable<Placement>() {
+		    public Placement call() throws Exception {
+		        Placement placement = mMediationAgent.getRewardedVideoPlacementInfo(placementName);
+				return placement;
+		    }
+		});
+
+		Placement returnValue = null;
+		try {
+		    returnValue = result.get();
+		} catch (Exception e) {
+		   //handle exception
+			Log.i(TAG,"Could not get rewarded placement info. " + e.getCause());
+		}
+
+		return placement2JSON(returnValue);
 	}
 
 	//// INTETRSTITIALS
 	///////////////////////////////////////////////////////////////////////////
 
 	public static void cacheInterstitial() {
-		mMediationAgent.loadInterstitial();
+		mainActivity.runOnUiThread(new Runnable() {
+			public void run() { 
+				mMediationAgent.loadInterstitial();
+			}
+		});
+		
 	}
 
 	public static boolean isInterstitialReady() {
-		return mMediationAgent.isInterstitialReady();
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		Future<Boolean> result = executor.submit(new Callable<Boolean>() {
+		    public Boolean call() throws Exception {
+				return mMediationAgent.isInterstitialReady();
+		    }
+		});
+
+		boolean returnValue=false;
+		try {
+		    returnValue = result.get();
+		} catch (Exception e) {
+		   //handle exception
+			Log.i(TAG,"Could not get isInterstitialReady. " + e.getCause());
+		}
+		return returnValue;
 	}
   
-	public static void showInterstitial(String placementName) {
-		mMediationAgent.showInterstitial(placementName);
+	public static void showInterstitial(final String placementName) {
+		mainActivity.runOnUiThread(new Runnable() {
+			public void run() { 
+				mMediationAgent.showInterstitial(placementName);
+			}
+		});
+		
 	}
 
 	//// APP LIFECICLE
