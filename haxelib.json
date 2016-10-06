@@ -4,10 +4,10 @@
 	"license": "MIT",
 	"tags": ["openfl", "supersonic", "ads"],
 	"description": "Aupersonic extension for OpenFL",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"dependencies": {
-		"extension-googleplayservices-lib": ""
+		"extension-googleplayservices-basement": ""
 	},	
-	"releasenote": "Allow the call of init function multiple times (in case it fails the first N calls).",
+	"releasenote": "Switch the android version to extension-googleplayservices-basement.",
 	"contributors": ["fbricker"]
 }

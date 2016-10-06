@@ -17,7 +17,9 @@
 	</section>
 
 	<section if="android">
-		<haxelib name="extension-googleplayservices-lib" />
+		<set name="google-play-services-basement" />
+		<set name="google-play-services-ads-lite" />
+		<haxelib name="extension-googleplayservices-basement" />
 
 		<dependency name="adcolony-supersonic"		path="dependencies/adcolony-supersonic"		if="adcolony-supersonic" />
 		<dependency name="admob-supersonic"			path="dependencies/admob-supersonic"		if="admob-supersonic" />
