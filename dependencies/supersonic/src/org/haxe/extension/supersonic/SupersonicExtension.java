@@ -124,7 +124,7 @@ public class SupersonicExtension extends Extension {
 
 	public static boolean isRewardedVideoPlacementCapped(final String placementName) {
 		try {
-			return mMediationAgent.isRewardedVideoPlacementCapped();
+			return mMediationAgent.isRewardedVideoPlacementCapped(placementName);
 		} catch (Exception e) {
 		   //handle exception
 			Log.i(TAG,"isRewardedVideoPlacementCapped exception: " + e.getCause());
