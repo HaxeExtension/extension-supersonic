@@ -33,6 +33,7 @@ class Supersonic extends EventDispatcher{
 	///////////////////////////////////////////////////////////////////////////
 
 	public static var isRewardedVideoAvailable(default,null):Void->Bool = function() return false;
+	public static var isRewardedVideoPlacementCapped(default,null):String->Bool = function(placementName:String) return false;
 	public static var showRewardedVideo(default,null):String->Void = function(placementName:String) return;
 	private static var _getRewardedVideoPlacementInfo(default,null):String->String = function(placementName:String) return null;
 
@@ -64,6 +65,7 @@ class Supersonic extends EventDispatcher{
 				if(_init == null){
 					_init = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
 					isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
+					isRewardedVideoPlacementCapped = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
 					showRewardedVideo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
 					_getRewardedVideoPlacementInfo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
 
@@ -80,6 +82,9 @@ class Supersonic extends EventDispatcher{
 				if(_init == null){
 					_init = cpp.Lib.load("SupersonicExtension","supersonicextension_init",2);
 					isRewardedVideoAvailable = cpp.Lib.load("SupersonicExtension","supersonicextension_is_rewarded_video_available",0);
+					trace("We MUST implement isRewardedVideoAvailable for IOS!!!");
+					trace("We MUST implement isRewardedVideoAvailable for IOS!!!");
+					trace("We MUST implement isRewardedVideoAvailable for IOS!!!");
 					showRewardedVideo = cpp.Lib.load("SupersonicExtension","supersonicextension_rewardedvideo_show",1);
 					_getRewardedVideoPlacementInfo = cpp.Lib.load("SupersonicExtension","supersonicextension_get_rewarded_video_placement_info",1);
 

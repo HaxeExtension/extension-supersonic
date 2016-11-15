@@ -75,7 +75,7 @@ class SimpleExample {
 	}
 
 	function playRewardedVideo() {
-		if(Supersonic.isRewardedVideoAvailable()){
+		if(Supersonic.isRewardedVideoAvailable() && !Supersonic.isRewardedVideoPlacementCapped("PLACEMENT-NAME")){
 			trace("Rewarded Video available");
 			Supersonic.showRewardedVideo("PLACEMENT-NAME");
 		}

@@ -122,10 +122,25 @@ public class SupersonicExtension extends Extension {
 		return returnValue;
 	}
 
+	public static boolean isRewardedVideoPlacementCapped(final String placementName) {
+		try {
+			return mMediationAgent.isRewardedVideoPlacementCapped();
+		} catch (Exception e) {
+		   //handle exception
+			Log.i(TAG,"isRewardedVideoPlacementCapped exception: " + e.getCause());
+		}
+		return false;
+	}
+
 	public static void showRewardedVideo(final String placementName){
 		mainActivity.runOnUiThread(new Runnable() {
-			public void run() { 
-				mMediationAgent.showRewardedVideo(placementName);	
+			public void run() {
+				try{
+					mMediationAgent.showRewardedVideo(placementName);	
+				}catch (Exception e) {
+				   //handle exception
+					Log.i(TAG,"showRewardedVideo exception: " + e.getCause());
+				}
 			}
 		});
 		
