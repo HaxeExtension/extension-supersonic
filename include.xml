@@ -17,9 +17,15 @@
 	</section>
 
 	<section if="android">
-		<set name="google-play-services-basement" />
-		<set name="google-play-services-ads-lite" />
-		<haxelib name="extension-googleplayservices-basement" />
+		<section unless="openfl-legacy || openfl-next">
+			<set name="playServicesVersion" value="+" unless="playServicesVersion" />
+		</section>
+		
+		<section if="openfl-legacy || openfl-next">
+			<set name="google-play-services-basement" />
+			<set name="google-play-services-ads-lite" />
+			<haxelib name="extension-googleplayservices-basement" />
+		</section>
 
 		<dependency name="adcolony-supersonic"		path="dependencies/adcolony-supersonic"		if="adcolony-supersonic" />
 		<dependency name="admob-supersonic"			path="dependencies/admob-supersonic"		if="admob-supersonic" />
