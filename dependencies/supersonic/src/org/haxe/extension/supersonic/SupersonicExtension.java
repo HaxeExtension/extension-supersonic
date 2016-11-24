@@ -47,7 +47,7 @@ import com.supersonic.mediationsdk.sdk.SupersonicFactory;
 
 public class SupersonicExtension extends Extension {
 
-	protected static HaxeObject _callback = null;
+	protected static SecureHaxeObject _callback = null;
 	private static Supersonic mMediationAgent = null;
 	private static final String TAG = "SupersonicExtension";
 
@@ -56,7 +56,7 @@ public class SupersonicExtension extends Extension {
 
 	public static void init(final String appKey, HaxeObject callback){
 		Log.i(TAG,"init called!");
-		_callback = callback;
+		_callback = new SecureHaxeObject(callback,mainActivity,TAG);
 
 		if(mMediationAgent == null){
 			//Get the mediation publisher instance 

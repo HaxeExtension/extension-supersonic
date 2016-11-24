@@ -4,10 +4,10 @@
 	"license": "MIT",
 	"tags": ["openfl", "supersonic", "ads"],
 	"description": "Aupersonic extension for OpenFL",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"dependencies": {
 		"extension-googleplayservices-basement": ""
-	},	
-	"releasenote": "Switch the android version to extension-googleplayservices-basement.",
-	"contributors": ["fbricker"]
+	},
+	"contributors": ["fbricker"],
+	"releasenote": "Replace HaxeObject with SecureHaxeObject"
 }

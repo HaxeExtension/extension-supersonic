@@ -29,7 +29,6 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import java.io.IOException;
 import org.haxe.extension.Extension;
-import org.haxe.lime.HaxeObject;
 
 //Import the Supersonic Class
 import com.supersonic.mediationsdk.logger.SupersonicError;
