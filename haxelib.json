@@ -4,10 +4,10 @@
 	"license": "MIT",
 	"tags": ["openfl", "supersonic", "ads"],
 	"description": "Aupersonic extension for OpenFL",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"dependencies": {
 		"extension-googleplayservices-basement": ""
 	},
 	"contributors": ["fbricker"],
-	"releasenote": "Replace HaxeObject with SecureHaxeObject"
+	"releasenote": "Call event callback from main/ui thread to avoid race conditions."
 }
