@@ -9,5 +9,5 @@
 		"extension-googleplayservices-basement": ""
 	},
 	"contributors": ["fbricker"],
-	"releasenote": "Call event callback from main/ui thread to avoid race conditions."
+	"releasenote": "Call event callback from main/ui thread to avoid race conditions + Fix UnityAds support."
 }

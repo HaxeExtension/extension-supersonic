@@ -120,7 +120,7 @@ class Supersonic extends EventDispatcher{
 			trace('Supersonic.onEvent = function(e:SupersonicEvent) { ... };');
 		}else{
 			trace('Event: '+type+' -> Data: '+data);
-			onEvent(new SupersonicEvent(type,data));
+			haxe.Timer.delay( function(){ onEvent(new SupersonicEvent(type,data)); }, 0);
 		}
 	}
 
