@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2016 Sempai Games
+/* Copyright (c) 2016 Sempai Games
  * http://www.sempaigames.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +24,11 @@ package extension.supersonic;
 
 import openfl.events.EventDispatcher;
 #if android
-import openfl.utils.JNI;
+	#if (openfl < "4.0.0")
+	import openfl.utils.JNI;
+	#else
+	import lime.system.JNI;
+	#end
 #end
 
 class Supersonic extends EventDispatcher{
@@ -63,15 +67,15 @@ class Supersonic extends EventDispatcher{
 		#if android
 			try{
 				if(_init == null){
-					_init = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
-					isRewardedVideoAvailable = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
-					isRewardedVideoPlacementCapped = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
-					showRewardedVideo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
-					_getRewardedVideoPlacementInfo = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
+					_init = JNI.createStaticMethod(SUPERSONIC_PATH, "init", "(Ljava/lang/String;Lorg/haxe/lime/HaxeObject;)V");
+					isRewardedVideoAvailable = JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoAvailable", "()Z");
+					isRewardedVideoPlacementCapped = JNI.createStaticMethod(SUPERSONIC_PATH, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
+					showRewardedVideo = JNI.createStaticMethod(SUPERSONIC_PATH, "showRewardedVideo", "(Ljava/lang/String;)V");
+					_getRewardedVideoPlacementInfo = JNI.createStaticMethod(SUPERSONIC_PATH, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
 
-					cacheInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "cacheInterstitial", "()V");
-					isInterstitialReady = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "isInterstitialReady", "()Z");
-					showInterstitial = openfl.utils.JNI.createStaticMethod(SUPERSONIC_PATH, "showInterstitial", "(Ljava/lang/String;)V");					
+					cacheInterstitial = JNI.createStaticMethod(SUPERSONIC_PATH, "cacheInterstitial", "()V");
+					isInterstitialReady = JNI.createStaticMethod(SUPERSONIC_PATH, "isInterstitialReady", "()Z");
+					showInterstitial = JNI.createStaticMethod(SUPERSONIC_PATH, "showInterstitial", "(Ljava/lang/String;)V");					
 				}
 				_init(appKey, instance);
 			}catch(e:Dynamic){
