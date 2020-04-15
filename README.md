@@ -5,7 +5,7 @@ More info on Supersonic: http://developers.supersonic.com/
 
 
 
-###How to Install
+### How to Install
 
 To install this library, you can simply get the library from haxelib like this:
 ```bash
@@ -40,7 +40,7 @@ may end-up getting the Android 64K limit error -->
 <haxelib name="extension-supersonic" />
 ```
 
-###Simple use Example
+### Simple use Example
 
 ```haxe
 // This example show a simple example.
@@ -85,7 +85,7 @@ class SimpleExample {
 
 ```
 
-###License
+### License
 
 The MIT License (MIT) - [LICENSE.md](LICENSE.md)
 
